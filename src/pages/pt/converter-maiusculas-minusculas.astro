@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+
+const title = 'Converter Maiúsculas e Minúsculas Online — ConverteCaixa';
+const description = 'Ferramenta gratuita para converter maiúsculas e minúsculas. Transforme texto com frase, título, inverso e outros estilos. Processamento local no navegador.';
+const canonical = `${SITE.baseUrl}/pt/converter-maiusculas-minusculas/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Converter Maiúsculas e Minúsculas</h1>
+      <p class="font-body-lg text-body mb-6">
+        Transforme seu texto instantaneamente. Cole ou digite abaixo e selecione o modo de conversão.
+      </p>
+
+      <Converter lang={lang} initialMode="sentence" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Como converter maiúsculas e minúsculas</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          O ConverteCaixa é a ferramenta mais rápida e segura para converter maiúsculas e minúsculas online.
+          Todo o processamento acontece localmente no seu navegador, garantindo que seu texto nunca seja enviado para servidores externos.
+        </p>
+
+        <h3>Modos de conversão</h3>
+        
+        <h4>Frase (Sentence Case)</h4>
+        <p>
+          Capitaliza apenas a primeira letra de cada frase. Útil para textos narrativos e parágrafos.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "ola mundo. como vai? bem!" → "Olá mundo. Como vai? Bem!"
+        </p>
+
+        <h4>Minúsculas (lowercase)</h4>
+        <p>
+          Converte todas as letras para minúsculas. Ideal para normalização de texto.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "OLA MUNDO" → "olá mundo"
+        </p>
+
+        <h4>MAIÚSCULAS (UPPERCASE)</h4>
+        <p>
+          Converte todas as letras para maiúsculas. Útil para títulos de destaque e ênfase.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "olá mundo" → "OLÁ MUNDO"
+        </p>
+
+        <h4>Capitalizado (Capitalized Case)</h4>
+        <p>
+          Capitaliza a primeira letra de cada palavra. Ideal para nomes próprios e títulos simples.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "olá mundo" → "Olá Mundo"
+        </p>
+
+        <h4>Título (Title Case)</h4>
+        <p>
+          Capitaliza seguindo regras de título, onde artigos e preposições permanecem em minúsculas.
+          Útil para títulos de artigos, livros e trabalhos acadêmicos.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "a arte da guerra" → "A Arte da Guerra"
+        </p>
+
+        <h4>Inverso (Inverse Case)</h4>
+        <p>
+          Inverte o caso de cada letra: maiúsculas viram minúsculas e vice-versa.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "Olá Mundo" → "oLÁ mUNDO"
+        </p>
+
+        <h4>Alternado (Alternating Case)</h4>
+        <p>
+          Alterna entre maiúsculas e minúsculas letra por letra.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "olá mundo" → "OlÁ mUnDo"
+        </p>
+
+        <h4>Alternar (Toggle Case)</h4>
+        <p>
+          Troca o caso de cada letra individualmente.
+        </p>
+        <p>
+          <strong>Exemplo:</strong> "Olá Mundo" → "oLÁ mUNDO"
+        </p>
+
+        <h3>Dicas de uso</h3>
+        <ul>
+          <li>Use <code>Ctrl+Z</code> para desfazer e <code>Ctrl+Y</code> para refazer</li>
+          <li>Clique em "Comparar" para ver original e convertido lado a lado</li>
+          <li>Baixe o resultado como arquivo TXT para usar em outros programas</li>
+          <li>Seu rascunho é salvo automaticamente no navegador</li>
+        </ul>
+
+        <h3>Suporte a caracteres especiais</h3>
+        <p>
+          O ConverteCaixa preserva caracteres especiais do português (á, é, ã, ç, etc.) e outros caracteres Unicode.
+          Quebras de linha, parágrafos e espaços são mantidos durante a conversão.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Perguntas frequentes</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>Como converter maiúsculas e minúsculas no Microsoft Excel?</h3>
+          <p>
+            No Excel, use as funções:
+          </p>
+          <ul>
+            <li><code>=UPPER(A1)</code> — Converte para maiúsculas</li>
+            <li><code>=LOWER(A1)</code> — Converte para minúsculas</li>
+            <li><code>=PROPER(A1)</code> — Converte para capitalizado</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Como converter maiúsculas e minúsculas no Microsoft Word?</h3>
+          <p>
+            No Word, selecione o texto e pressione <code>Shift+F3</code> para alternar entre maiúsculas, minúsculas e capitalizado.
+            Para mais opções, use <strong>Formatar &gt; Texto &gt; Caixa Alta/Baixa</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h3>Como converter maiúsculas e minúsculas no Google Sheets?</h3>
+          <p>
+            No Google Sheets, use as mesmas funções do Excel:
+          </p>
+          <ul>
+            <li><code>=UPPER(A1)</code></li>
+            <li><code>=LOWER(A1)</code></li>
+            <li><code>=PROPER(A1)</code></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Qual a diferença entre frase e título?</h3>
+          <p>
+            <strong>Frase</strong> capitaliza apenas a primeira letra de cada frase. <strong>Título</strong> capitaliza a primeira letra de cada palavra significativa, mantendo artigos e preposições em minúsculas.
+          </p>
+        </div>
+
+        <div>
+          <h3>Posso usar o ConverteCaixa para textos longos?</h3>
+          <p>
+            Sim. O ConverteCaixa é otimizado para textos de qualquer tamanho, desde uma palavra até documentos inteiros.
+            Todo o processamento é feito localmente, sem limites de tamanho impostos pelo servidor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Ver também</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/case-converter/" class="card hover:border-ink transition-colors group" lang="en">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            English version — Case Converter by ConverteCaixa
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

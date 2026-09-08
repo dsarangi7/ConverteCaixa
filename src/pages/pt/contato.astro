@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Contato - ConverteCaixa';
+const description = 'Entre em contato com o ConverteCaixa. Envie suas dúvidas, sugestões ou feedback.';
+const canonical = `${SITE.baseUrl}/pt/contato/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Contato</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Estamos aqui para ajudar. Envie sua mensagem e responderemos o mais breve possível.
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>Como entrar em contato</h2>
+        <p>
+          Se você tem dúvidas, sugestões, encontrou um bug ou deseja enviar feedback sobre o ConverteCaixa,
+          entre em contato pelo e-mail:
+        </p>
+
+        <div class="card my-6">
+          <p class="font-body-lg text-ink">
+            <strong>E-mail:</strong>{' '}
+            <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+          </p>
+        </div>
+
+        <h2>Tipos de assunto</h2>
+        <p>
+          Para nos ajudar a responder mais rapidamente, inclua no assunto do e-mail uma descrição curta do motivo do contato, como:
+        </p>
+        <ul>
+          <li><strong>Dúvida</strong> — Perguntas sobre o uso da ferramenta.</li>
+          <li><strong>Bug</strong> — Relatos de problemas ou comportamentos inesperados.</li>
+          <li><strong>Sugestão</strong> — Ideias para melhorias ou novos recursos.</li>
+          <li><strong>Feedback</strong> — Opiniões sobre sua experiência com o ConverteCaixa.</li>
+          <li><strong>Outro</strong> — Assuntos diversos.</li>
+        </ul>
+
+        <h2>Tempo de resposta</h2>
+        <p>
+          Nos esforçamos para responder todas as mensagens em até 48 horas úteis.
+          Durante períodos de alta demanda, o tempo de resposta pode ser ligeiramente maior.
+        </p>
+
+        <h2>Suporte técnico</h2>
+        <p>
+          Antes de enviar uma mensagem, verifique se a sua dúvida já é respondida nas
+          <a href="/pt/sobre/">Perguntas frequentes na página inicial</a>.
+          Isso pode agilizar a resolução do seu problema.
+        </p>
+
+        <h2>Privacidade</h2>
+        <p>
+          Todo o processamento de texto no ConverteCaixa é feito localmente no seu navegador.
+          Seus dados nunca são enviados para nossos servidores.
+          Para mais detalhes, consulte nossa{' '}
+          <a href="/pt/politica-de-privacidade/">Política de Privacidade</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,471 @@
+---
+import { convertCase, countTextStats, ConversionHistory } from '../lib/converter';
+import type { CaseMode, TextStats } from '../lib/converter';
+import type { Locale } from '../lib/config';
+
+interface Props {
+  lang?: Locale;
+  initialMode?: CaseMode;
+  pageTitle?: string;
+}
+
+const { lang = 'pt-BR', initialMode = 'sentence', pageTitle } = Astro.props;
+
+const modes: CaseMode[] = ['sentence', 'lower', 'upper', 'capitalized', 'title', 'inverse', 'alternating', 'toggle'];
+
+const modeLabels: Record<CaseMode, { pt: string; en: string }> = {
+  sentence: { pt: 'Frase', en: 'Sentence' },
+  lower: { pt: 'Minúsculas', en: 'lowercase' },
+  upper: { pt: 'MAIÚSCULAS', en: 'UPPERCASE' },
+  capitalized: { pt: 'Capitalizado', en: 'Capitalized' },
+  title: { pt: 'Título', en: 'Title Case' },
+  inverse: { pt: 'Inverso', en: 'Inverse' },
+  alternating: { pt: 'Alternado', en: 'aLtErNaTiNg' },
+  toggle: { pt: 'Alternar', en: 'tOGGLE' },
+};
+
+const modeDescriptions: Record<CaseMode, { pt: string; en: string }> = {
+  sentence: { pt: 'Primeira letra de cada frase em maiúscula', en: 'Capitalize the first letter of each sentence' },
+  lower: { pt: 'Todas as letras em minúsculas', en: 'All letters in lowercase' },
+  upper: { pt: 'Todas as letras em maiúsculas', en: 'All letters in UPPERCASE' },
+  capitalized: { pt: 'Primeira letra de cada palavra em maiúscula', en: 'Capitalize the first letter of every word' },
+  title: { pt: 'Título com regras de capitalização', en: 'Title with capitalization rules' },
+  inverse: { pt: 'Inverter maiúsculas e minúsculas', en: 'Swap uppercase and lowercase' },
+  alternating: { pt: 'Alternar entre maiúsculas e minúsculas', en: 'Alternate between uppercase and lowercase' },
+  toggle: { pt: 'Alternar o caso de cada letra', en: 'Toggle the case of each letter' },
+};
+
+const labels = {
+  inputPlaceholder: { pt: 'Cole ou digite seu texto aqui...', en: 'Paste or type your text here...' },
+  outputPlaceholder: { pt: 'O texto convertido aparecerá aqui...', en: 'Converted text will appear here...' },
+  copy: { pt: 'Copiar', en: 'Copy' },
+  copied: { pt: 'Copiado!', en: 'Copied!' },
+  clear: { pt: 'Limpar', en: 'Clear' },
+  undo: { pt: 'Desfazer', en: 'Undo' },
+  redo: { pt: 'Refazer', en: 'Redo' },
+  download: { pt: 'Baixar TXT', en: 'Download TXT' },
+  compare: { pt: 'Comparar', en: 'Compare' },
+  original: { pt: 'Original', en: 'Original' },
+  converted: { pt: 'Convertido', en: 'Converted' },
+  characters: { pt: 'caracteres', en: 'characters' },
+  charactersNoSpaces: { pt: 'sem espaços', en: 'without spaces' },
+  words: { pt: 'palavras', en: 'words' },
+  sentences: { pt: 'frases', en: 'sentences' },
+  lines: { pt: 'linhas', en: 'lines' },
+  privacyNotice: { pt: 'O texto é processado no seu navegador e não é enviado pelo conversor. A página é entregue pela internet.', en: 'Text is processed in your browser and is not uploaded by the converter. The page itself is delivered over the internet.' },
+};
+---
+
+<div class="converter-container" data-lang={lang}>
+  <!-- Mode Selection -->
+  <div class="converter-toolbar">
+    <div class="toolbar-heading">
+      <span class="font-mono-eyebrow">{lang === 'pt-BR' ? 'Modo de conversão' : 'Conversion mode'}</span>
+      <span class="toolbar-hint">{lang === 'pt-BR' ? 'Escolha uma transformação' : 'Choose a transformation'}</span>
+    </div>
+    <div class="mode-list" role="radiogroup" aria-label={lang === 'pt-BR' ? 'Modo de conversão' : 'Conversion mode'}>
+      {modes.map(mode => (
+        <button
+          type="button"
+          class={`mode-btn ${mode === initialMode ? 'active' : ''}`}
+          data-mode={mode}
+          role="radio"
+          aria-checked={mode === initialMode}
+          aria-label={modeLabels[mode][lang]}
+          title={modeDescriptions[mode][lang]}
+        >
+          {modeLabels[mode][lang]}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Main Converter Area -->
+  <div class="editor-grid">
+    <!-- Input -->
+    <div class="editor-panel">
+      <div class="panel-header">
+        <label for="converter-input" class="panel-label">
+        {labels.original[lang]}
+        </label>
+        <span class="panel-meta">{lang === 'pt-BR' ? 'Entrada' : 'Input'}</span>
+      </div>
+      <textarea
+        id="converter-input"
+        class="textarea min-h-[300px] lg:min-h-[400px] font-body-md"
+        placeholder={labels.inputPlaceholder[lang]}
+        aria-describedby="input-stats privacy-notice"
+        spellcheck="false"
+        autocomplete="off"
+      ></textarea>
+    </div>
+
+    <!-- Output -->
+    <div class="editor-panel">
+      <div class="panel-header">
+        <label for="converter-output" class="panel-label">
+          {labels.converted[lang]}
+        </label>
+        <div class="panel-actions">
+          <button
+            type="button"
+            id="compare-btn"
+            class="btn-ghost btn-sm"
+            aria-label={labels.compare[lang]}
+            title={labels.compare[lang]}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <textarea
+        id="converter-output"
+        class="textarea min-h-[300px] lg:min-h-[400px] font-body-md bg-hairline-soft"
+        placeholder={labels.outputPlaceholder[lang]}
+        readonly
+        aria-live="polite"
+        aria-label={labels.converted[lang]}
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="converter-actions">
+    <button
+      type="button"
+      id="copy-btn"
+      class="btn-primary btn-sm"
+      aria-label={labels.copy[lang]}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+      </svg>
+      {labels.copy[lang]}
+    </button>
+    
+    <button
+      type="button"
+      id="download-btn"
+      class="btn-ghost btn-sm"
+      aria-label={labels.download[lang]}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+      </svg>
+      {labels.download[lang]}
+    </button>
+    
+    <button
+      type="button"
+      id="undo-btn"
+      class="btn-ghost btn-sm"
+      aria-label={labels.undo[lang]}
+      title={`${labels.undo[lang]} (Ctrl+Z)`}
+      disabled
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M3 7v6h6M21 17a9 9 0 00-9-9 9 9 0 00-6.69 3L3 13" />
+      </svg>
+    </button>
+    
+    <button
+      type="button"
+      id="redo-btn"
+      class="btn-ghost btn-sm"
+      aria-label={labels.redo[lang]}
+      title={`${labels.redo[lang]} (Ctrl+Y)`}
+      disabled
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M21 7v6h-6M3 17a9 9 0 019-9 9 9 0 016.69 3L21 13" />
+      </svg>
+    </button>
+    
+    <div class="action-spacer"></div>
+    
+    <button
+      type="button"
+      id="clear-btn"
+      class="btn-ghost btn-sm text-error hover:text-error-deep"
+      aria-label={labels.clear[lang]}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
+        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+      </svg>
+      {labels.clear[lang]}
+    </button>
+  </div>
+
+  <!-- Stats -->
+  <div id="input-stats" class="stats-row" aria-live="polite">
+    <span><span id="stat-chars">0</span> {labels.characters[lang]}</span>
+    <span><span id="stat-chars-no-spaces">0</span> {labels.charactersNoSpaces[lang]}</span>
+    <span><span id="stat-words">0</span> {labels.words[lang]}</span>
+    <span><span id="stat-sentences">0</span> {labels.sentences[lang]}</span>
+    <span><span id="stat-lines">1</span> {labels.lines[lang]}</span>
+  </div>
+
+  <!-- Privacy Notice -->
+  <p id="privacy-notice" class="privacy-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0110 0v4" />
+    </svg>
+    {labels.privacyNotice[lang]}
+  </p>
+</div>
+
+<script>
+  import { convertCase, countTextStats, ConversionHistory } from '../lib/converter';
+  import type { CaseMode } from '../lib/converter';
+
+  class Converter {
+    private input: HTMLTextAreaElement;
+    private output: HTMLTextAreaElement;
+    private history: ConversionHistory;
+    private currentMode: CaseMode = 'sentence';
+    private draftKey: string;
+
+    constructor() {
+      this.input = document.getElementById('converter-input') as HTMLTextAreaElement;
+      this.output = document.getElementById('converter-output') as HTMLTextAreaElement;
+      this.history = new ConversionHistory();
+      this.draftKey = `convertecaixa-draft-${window.location.pathname}`;
+
+      this.init();
+    }
+
+    private init(): void {
+      // Load draft
+      this.loadDraft();
+
+      // Mode buttons
+      document.querySelectorAll('[data-mode]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const target = e.currentTarget as HTMLElement;
+          this.setMode(target.dataset.mode as CaseMode);
+        });
+      });
+
+      // Input events
+      this.input.addEventListener('input', () => this.onInput());
+      this.input.addEventListener('keydown', (e) => this.handleKeyboard(e));
+
+      // Action buttons
+      document.getElementById('copy-btn')?.addEventListener('click', () => this.copyToClipboard());
+      document.getElementById('download-btn')?.addEventListener('click', () => this.downloadTxt());
+      document.getElementById('undo-btn')?.addEventListener('click', () => this.undo());
+      document.getElementById('redo-btn')?.addEventListener('click', () => this.redo());
+      document.getElementById('clear-btn')?.addEventListener('click', () => this.clear());
+      document.getElementById('compare-btn')?.addEventListener('click', () => this.toggleCompare());
+
+      // Initial conversion
+      if (this.input.value) {
+        this.convert();
+      }
+    }
+
+    private setMode(mode: CaseMode): void {
+      this.currentMode = mode;
+
+      // Update button states
+      document.querySelectorAll('[data-mode]').forEach(btn => {
+        const isCurrentMode = btn.getAttribute('data-mode') === mode;
+        btn.classList.toggle('active', isCurrentMode);
+        btn.setAttribute('aria-checked', isCurrentMode.toString());
+      });
+
+      // Reconvert
+      this.convert();
+
+      // Track event (non-sensitive)
+      this.trackEvent('converter_mode_selected', { mode });
+    }
+
+    private onInput(): void {
+      this.convert();
+      this.saveDraft();
+    }
+
+    private convert(): void {
+      const text = this.input.value;
+      
+      if (!text) {
+        this.output.value = '';
+        this.updateStats(0, 0, 0, 0, 1);
+        return;
+      }
+
+      const converted = convertCase(text, this.currentMode);
+      this.output.value = converted;
+
+      const stats = countTextStats(text);
+      this.updateStats(
+        stats.characters,
+        stats.charactersWithoutSpaces,
+        stats.words,
+        stats.sentences,
+        stats.lines
+      );
+
+      // Push to history
+      this.history.push(text);
+      this.updateHistoryButtons();
+    }
+
+    private updateStats(chars: number, charsNoSpaces: number, words: number, sentences: number, lines: number): void {
+      const charEl = document.getElementById('stat-chars');
+      const charNoSpacesEl = document.getElementById('stat-chars-no-spaces');
+      const wordsEl = document.getElementById('stat-words');
+      const sentencesEl = document.getElementById('stat-sentences');
+      const linesEl = document.getElementById('stat-lines');
+
+      if (charEl) charEl.textContent = chars.toLocaleString();
+      if (charNoSpacesEl) charNoSpacesEl.textContent = charsNoSpaces.toLocaleString();
+      if (wordsEl) wordsEl.textContent = words.toLocaleString();
+      if (sentencesEl) sentencesEl.textContent = sentences.toLocaleString();
+      if (linesEl) linesEl.textContent = lines.toLocaleString();
+    }
+
+    private async copyToClipboard(): Promise<void> {
+      const text = this.output.value;
+      if (!text) return;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        this.showToast(document.querySelector('[data-lang]')?.getAttribute('data-lang') === 'en' ? 'Copied!' : 'Copiado!');
+        this.trackEvent('copy_button_clicked');
+      } catch {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        this.showToast(document.querySelector('[data-lang]')?.getAttribute('data-lang') === 'en' ? 'Copied!' : 'Copiado!');
+        this.trackEvent('copy_button_clicked');
+      }
+    }
+
+    private downloadTxt(): void {
+      const text = this.output.value;
+      if (!text) return;
+
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `convertecaixa-${this.currentMode}-${Date.now()}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      this.showToast(document.querySelector('[data-lang]')?.getAttribute('data-lang') === 'en' ? 'Downloaded!' : 'Baixado!');
+      this.trackEvent('download_clicked');
+    }
+
+    private undo(): void {
+      const state = this.history.undo();
+      if (state !== null) {
+        this.input.value = state;
+        this.convert();
+        this.saveDraft();
+      }
+    }
+
+    private redo(): void {
+      const state = this.history.redo();
+      if (state !== null) {
+        this.input.value = state;
+        this.convert();
+        this.saveDraft();
+      }
+    }
+
+    private clear(): void {
+      this.input.value = '';
+      this.output.value = '';
+      this.history.clear();
+      this.updateStats(0, 0, 0, 0, 1);
+      this.updateHistoryButtons();
+      localStorage.removeItem(this.draftKey);
+      this.input.focus();
+    }
+
+    private toggleCompare(): void {
+      const output = this.output;
+      if (output.readOnly) {
+        output.readOnly = false;
+        output.classList.remove('bg-hairline-soft');
+      } else {
+        output.readOnly = true;
+        output.classList.add('bg-hairline-soft');
+      }
+    }
+
+    private handleKeyboard(e: KeyboardEvent): void {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        e.preventDefault();
+        this.undo();
+      } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.shiftKey && e.key === 'z'))) {
+        e.preventDefault();
+        this.redo();
+      }
+    }
+
+    private updateHistoryButtons(): void {
+      const undoBtn = document.getElementById('undo-btn') as HTMLButtonElement;
+      const redoBtn = document.getElementById('redo-btn') as HTMLButtonElement;
+      
+      if (undoBtn) undoBtn.disabled = !this.history.canUndo();
+      if (redoBtn) redoBtn.disabled = !this.history.canRedo();
+    }
+
+    private saveDraft(): void {
+      try {
+        localStorage.setItem(this.draftKey, this.input.value);
+      } catch {
+        // localStorage might be full or unavailable
+      }
+    }
+
+    private loadDraft(): void {
+      try {
+        const draft = localStorage.getItem(this.draftKey);
+        if (draft) {
+          this.input.value = draft;
+        }
+      } catch {
+        // localStorage might be unavailable
+      }
+    }
+
+    private showToast(message: string): void {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      }
+    }
+
+    private trackEvent(eventName: string, params?: Record<string, string>): void {
+      // Send to GA4 if available
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, params);
+      }
+    }
+  }
+
+  // Initialize converter when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new Converter();
+  });
+</script>

@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Política de Privacidade - ConverteCaixa';
+const description = 'Política de Privacidade do ConverteCaixa. Saiba como seus dados são tratados e por que o processamento é 100% local.';
+const canonical = `${SITE.baseUrl}/pt/politica-de-privacidade/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Política de Privacidade</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Última atualização: 7 de setembro de 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>Introdução</h2>
+        <p>
+          Esta Política de Privacidade descreve como o ConverteCaixa trata as informações dos usuários.
+          O ConverteCaixa é uma ferramenta de conversão de texto que processa todos os dados localmente no navegador do usuário.
+        </p>
+
+        <h2>Processamento local de dados</h2>
+        <p>
+          <strong>O conversor não coleta, armazena ou transmite o texto digitado ou colado pelo usuário.</strong>
+          Todo o processamento de texto ocorre integralmente no navegador, usando JavaScript padrão.
+          A página e os recursos do site são entregues pela internet, inclusive pela infraestrutura de hospedagem e CDN, mas o conteúdo do texto não é enviado pelo conversor.
+        </p>
+        <p>
+          Isso significa que:
+        </p>
+        <ul>
+          <li>O texto permanece no navegador durante a conversão.</li>
+          <li>O conteúdo digitado não é enviado pelo conversor para logs ou APIs.</li>
+          <li>Nenhum dado de texto é compartilhado com terceiros.</li>
+          <li>Nenhum dado de texto é usado para fins publicitários ou analíticos.</li>
+        </ul>
+
+        <h2>Dados que podem ser coletados automaticamente</h2>
+        <p>
+          Como qualquer site, o ConverteCaixa pode coletar automaticamente certas informações não identificáveis
+          por meio de tecnologias padrão da web, incluindo:
+        </p>
+        <ul>
+          <li>Endereço IP (anonimizado nos logs do servidor).</li>
+          <li>Tipo de navegador e sistema operacional.</li>
+          <li>Páginas visitadas e tempo de permanência.</li>
+          <li>Fonte de referência (site de onde você veio).</li>
+        </ul>
+        <p>
+          Essas informações são usadas exclusivamente para fins estatísticos e de melhoria do serviço,
+          e não são vinculadas a qualquer conteúdo de texto processado pelo usuário.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          O ConverteCaixa pode usar cookies estritamente necessários para o funcionamento do site,
+          como preferências de idioma e tema (claro/escuro).
+          Para mais detalhes, consulte nossa{' '}
+          <a href="/pt/politica-de-cookies/">Política de Cookies</a>.
+        </p>
+
+        <h2>Serviços de terceiros</h2>
+        <p>
+          O ConverteCaixa pode utilizar serviços de terceiros para hospedagem, CDN e analytics.
+          Esses serviços podem coletar informações padrão de navegação, mas não têm acesso ao conteúdo
+          do texto processado pelo usuário, uma vez que esse processamento ocorre exclusivamente no navegador.
+        </p>
+
+        <h2>Links externos</h2>
+        <p>
+          O site pode conter links para outros sites. O ConverteCaixa não se responsabiliza pelas
+          práticas de privacidade de sites externos. Recomendamos que você leia as políticas de privacidade
+          de qualquer site que visite.
+        </p>
+
+        <h2>Menores de idade</h2>
+        <p>
+          O ConverteCaixa não coleta intencionalmente dados de menores de 13 anos.
+          Como nenhum dado pessoal é coletado pela ferramenta, não há risco de exposição de dados de menores.
+        </p>
+
+        <h2>Alterações nesta política</h2>
+        <p>
+          Esta Política de Privacidade pode ser atualizada periodicamente. Qualquer alteração será publicada
+          nesta página com a data de atualização revisada. Recomendamos que você revise esta página regularmente.
+        </p>
+
+        <h2>Contato</h2>
+        <p>
+          Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato:
+        </p>
+        <p>
+          E-mail: <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Responsável: ConverteCaixa — contato@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Sobre Nós - ConverteCaixa';
+const description = 'Conheça o ConverteCaixa, uma ferramenta gratuita para conversão de texto com processamento local no navegador.';
+const canonical = `${SITE.baseUrl}/pt/sobre/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Sobre o ConverteCaixa</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Ferramenta gratuita para conversão de texto com total privacidade.
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>O que é o ConverteCaixa?</h2>
+        <p>
+          O ConverteCaixa é uma ferramenta online gratuita que permite converter texto entre diferentes estilos de capitalização — maiúsculas, minúsculas, frase, título, inverso e mais.
+          A conversão acontece diretamente no navegador, sem enviar o conteúdo do texto para processamento em um servidor. O site é entregue pela internet.
+        </p>
+
+        <h2>Por que o ConverteCaixa?</h2>
+        <p>
+          Ao contrário de ferramentas que enviam o texto para processamento remoto, o ConverteCaixa transforma o conteúdo localmente no navegador.
+          Isso significa que:
+        </p>
+        <ul>
+          <li><strong>Privacidade total</strong> — Seu texto nunca sai do seu dispositivo.</li>
+          <li><strong>Velocidade</strong> — Processamento instantâneo sem latência de rede.</li>
+          <li><strong>Funciona offline</strong> — Após carregar a página, a ferramenta funciona sem conexão com a internet.</li>
+          <li><strong>Gratuito</strong> — Sem cadastro, sem limites, sem custos ocultos.</li>
+        </ul>
+
+        <h2>Como funciona?</h2>
+        <p>
+          Todo o processamento é feito usando JavaScript padrão do navegador. Quando você cola ou digita texto e seleciona um modo de conversão,
+          o navegador aplica as transformações diretamente na memória. O conteúdo do texto não é transmitido para processamento.
+        </p>
+        <p>
+          Você pode verificar isso inspecionando o código-fonte da página ou monitorando o tráfego de rede no painel de desenvolvedor do seu navegador.
+        </p>
+
+        <h2>Tecnologias utilizadas</h2>
+        <p>
+          O ConverteCaixa é construído com:
+        </p>
+        <ul>
+          <li><strong>Tailwind CSS</strong> — Framework de estilização.</li>
+          <li><strong>JavaScript vanilla</strong> — Sem dependências externas para processamento de texto.</li>
+        </ul>
+
+        <h2>Disponibilidade</h2>
+        <p>
+          O ConverteCaixa é uma ferramenta gratuita e open source. Não é necessário criar uma conta para usar.
+          Não há limites diários de uso e não há anúncios intrusivos.
+        </p>
+
+        <h2>Responsável</h2>
+        <p>
+          ConverteCaixa<br />
+          E-mail: <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+
+const title = 'Sentence Case Converter — ConverteCaixa';
+const description = 'Convert text to sentence case instantly. Capitalize the first letter of each sentence. Free online tool.';
+const canonical = `${SITE.baseUrl}/en/sentence-case-converter/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Sentence Case Converter</h1>
+      <p class="font-body-lg text-body mb-6">
+        Capitalize the first letter of each sentence. Paste your text below.
+      </p>
+
+      <Converter lang={lang} initialMode="sentence" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">What is Sentence Case?</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          Sentence case is the standard capitalization style used in most English writing.
+          Only the first letter of each sentence is capitalized, while all other letters remain lowercase.
+        </p>
+
+        <h3>When to Use Sentence Case</h3>
+        <ul>
+          <li><strong>Body text</strong> — Standard for paragraphs and articles</li>
+          <li><strong>Paragraphs</strong> — After periods, exclamation marks, and question marks</li>
+          <li><strong>Lists</strong> — When list items are complete sentences</li>
+          <li><strong>Captions</strong> — Under images and figures</li>
+        </ul>
+
+        <h3>Examples</h3>
+        <p>
+          <strong>Input:</strong> "hello world. how are you? i am fine!"
+        </p>
+        <p>
+          <strong>Output:</strong> "Hello world. How are you? I am fine!"
+        </p>
+
+        <p>
+          <strong>Input:</strong> "the quick brown fox jumps over the lazy dog. the end."
+        </p>
+        <p>
+          <strong>Output:</strong> "The quick brown fox jumps over the lazy dog. The end."
+        </p>
+
+        <h3>Sentence Case vs. Title Case</h3>
+        <p>
+          <strong>Sentence case</strong> capitalizes only the first word of each sentence.
+          <strong>Title case</strong> capitalizes the first letter of each significant word.
+          Use sentence case for body text and title case for headings and titles.
+        </p>
+
+        <h3>Style Guide Differences</h3>
+        <ul>
+          <li><strong>APA Style</strong> — Uses sentence case for headings and titles</li>
+          <li><strong>MLA Style</strong> — Uses title case for headings</li>
+          <li><strong>Chicago Style</strong> — Uses title case for headings</li>
+          <li><strong>AP Style</strong> — Uses title case for headlines</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline bg-hairline-soft">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>What is the difference between sentence case and lowercase?</h3>
+          <p>
+            <strong>Sentence case</strong> capitalizes the first letter of each sentence. <strong>lowercase</strong> converts all letters to lowercase. Sentence case is standard for body text.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I convert to sentence case in Microsoft Word?</h3>
+          <p>
+            Select your text and press <code>Shift+F3</code> to cycle through cases. Word will cycle through uppercase, lowercase, and capitalized (not true sentence case).
+            For precise sentence case, use ConverteCaixa.
+          </p>
+        </div>
+
+        <div>
+          <h3>Does sentence case work with multiple paragraphs?</h3>
+          <p>
+            Yes. ConverteCaixa handles multiple paragraphs correctly, capitalizing the first letter after each paragraph break.
+          </p>
+        </div>
+
+        <div>
+          <h3>What about abbreviations and acronyms?</h3>
+          <p>
+            Sentence case does not affect uppercase abbreviations and acronyms like "NASA" or "USA" that are already uppercase.
+            Only the first letter of each sentence is capitalized.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">See Also</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            All-in-one text case conversion tool
+          </div>
+        </a>
+        <a href="/en/title-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Title Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Apply title capitalization rules
+          </div>
+        </a>
+        <a href="/en/uppercase-to-lowercase/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Uppercase to Lowercase
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Convert uppercase text to lowercase
+          </div>
+        </a>
+        <a href="/pt/converter-maiusculas-minusculas/" class="card hover:border-ink transition-colors group" lang="pt-BR">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Converter Maiúsculas e Minúsculas
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Versão em português — ConverteCaixa
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

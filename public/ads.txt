@@ -1,0 +1,5 @@
+# ConverteCaixa - ads.txt
+# https://iabtechlab.com/ads.txt/
+
+# Replace PUBLISHER_ID with your Google AdSense publisher ID (pub-XXXXXXXXXXXXXXXX)
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

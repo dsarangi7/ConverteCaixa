@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Política de Cookies - ConverteCaixa';
+const description = 'Política de Cookies do ConverteCaixa. Saiba como usamos cookies e tecnologias semelhantes.';
+const canonical = `${SITE.baseUrl}/pt/politica-de-cookies/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Política de Cookies</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Última atualização: 7 de setembro de 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>O que são cookies?</h2>
+        <p>
+          Cookies são pequenos arquivos de texto que são armazenados no seu dispositivo quando você visita um site.
+          Eles são amplamente utilizados para fazer os sites funcionarem de forma mais eficiente e para fornecer
+          informações aos proprietários do site.
+        </p>
+
+        <h2>Como o ConverteCaixa usa cookies</h2>
+        <p>
+          O ConverteCaixa usa apenas cookies estritamente necessários para o funcionamento do site.
+          Não utilizamos cookies de rastreamento, publicitários ou analíticos de terceiros.
+        </p>
+
+        <h3>Cookies essenciais</h3>
+        <p>
+          Esses cookies são indispensáveis para o funcionamento básico do site e não podem ser desativados.
+          Eles incluem:
+        </p>
+        <ul>
+          <li><strong>Preferências de idioma</strong> — Armazena a preferência de idioma (PT ou EN) do usuário.</li>
+          <li><strong>Preferências de tema</strong> — Armazena a preferência de tema (claro ou escuro) do usuário.</li>
+          <li><strong>Sessão</strong> — Cookies de sessão necessários para o funcionamento da navegação.</li>
+        </ul>
+
+        <h3>Cookies de funcionalidade</h3>
+        <p>
+          Podemos usar cookies para melhorar a experiência do usuário, como lembrar o modo de conversão
+          selecionado pela última vez. Esses cookies são armazenados apenas no navegador e não são transmitidos.
+        </p>
+
+        <h2>Cookies que NÃO usamos</h2>
+        <p>
+          O ConverteCaixa não utiliza:
+        </p>
+        <ul>
+          <li>Cookies de rastreamento cross-site.</li>
+          <li>Cookies publicitários ou de publicidade direcionada.</li>
+          <li>Cookies de analytics de terceiros (como Google Analytics).</li>
+          <li>Cookies de redes sociais.</li>
+          <li>Cookies de fingerprinting.</li>
+        </ul>
+
+        <h2>Armazenamento local (localStorage)</h2>
+        <p>
+          O ConverteCaixa pode utilizar o <code>localStorage</code> do navegador para armazenar
+          preferências do usuário (como tema e idioma). Esses dados ficam exclusivamente no seu dispositivo
+          e nunca são transmitidos para servidores externos.
+        </p>
+
+        <h2>Controle de cookies</h2>
+        <p>
+          Você pode controlar e/ou excluir cookies conforme desejar através das configurações do seu navegador.
+          A maioria dos navegadores permite que você recuse ou aceite cookies.
+        </p>
+        <p>
+          Para mais informações sobre como gerenciar cookies, consulte a documentação do seu navegador:
+        </p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/pt-BR/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/pt-br/microsoft-edge/excluir-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+        </ul>
+
+        <h2>Alterações nesta política</h2>
+        <p>
+          Esta Política de Cookies pode ser atualizada periodicamente. Qualquer alteração será publicada
+          nesta página com a data de atualização revisada.
+        </p>
+
+        <h2>Contato</h2>
+        <p>
+          Se você tiver dúvidas sobre esta Política de Cookies, entre em contato:
+        </p>
+        <p>
+          E-mail: <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Responsável: ConverteCaixa — contato@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,297 @@
+---
+import { SITE, META, NAV_ITEMS, FOOTER_LINKS } from '../lib/config';
+import type { Locale } from '../lib/config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  lang?: Locale;
+  noindex?: boolean;
+  faqItems?: Array<{ question: string; answer: string }>;
+}
+
+const {
+  title = META['pt-BR'].title,
+  description = META['pt-BR'].description,
+  canonical = SITE.baseUrl,
+  ogImage = `${SITE.baseUrl}/og-image.png`,
+  lang = 'pt-BR' as Locale,
+  noindex = false,
+  faqItems = [],
+} = Astro.props;
+
+const meta = META[lang];
+const navItems = NAV_ITEMS[lang];
+const footerLinks = FOOTER_LINKS[lang];
+const alternateLocale = lang === 'pt-BR' ? 'en' : 'pt-BR';
+const alternatePath = lang === 'pt-BR' ? '/en/' : '/pt/';
+---
+
+<!DOCTYPE html>
+<html lang={lang === 'pt-BR' ? 'pt-BR' : 'en'}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={meta.keywords} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  
+  <!-- Canonical -->
+  <link rel="canonical" href={canonical} />
+  
+  <!-- hreflang -->
+  <link rel="alternate" hreflang={lang} href={canonical} />
+  <link rel="alternate" hreflang={alternateLocale} href={`${SITE.baseUrl}${alternatePath}`} />
+  <link rel="alternate" hreflang="x-default" href={SITE.baseUrl} />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={lang === 'pt-BR' ? 'pt_BR' : 'en_US'} />
+  <meta property="og:locale:alternate" content={lang === 'pt-BR' ? 'en_US' : 'pt_BR'} />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  
+  <!-- Theme color -->
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": SITE.name,
+    "url": SITE.baseUrl,
+  })} />
+  
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": SITE.name,
+    "url": SITE.baseUrl,
+    "logo": `${SITE.baseUrl}/android-chrome-512x512.png`,
+    "sameAs": []
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": lang === 'pt-BR' ? 'ConverteCaixa' : 'Case Converter by ConverteCaixa',
+    "url": canonical,
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "isAccessibleForFree": true,
+    "featureList": lang === 'pt-BR'
+      ? 'Maiúsculas, minúsculas, frase, título, capitalizado, inverso e alternado'
+      : 'Uppercase, lowercase, sentence case, title case, capitalized, inverse and alternating case',
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  })} />
+
+  {faqItems.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+    })),
+  })} />}
+</head>
+<body class="min-h-screen flex flex-col">
+  <a href="#main-content" class="skip-link">
+    {lang === 'pt-BR' ? 'Pular para o conteúdo principal' : 'Skip to main content'}
+  </a>
+  
+  <!-- Navigation -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label={lang === 'pt-BR' ? 'Navegação principal' : 'Main navigation'}>
+      <a href={lang === 'pt-BR' ? '/pt/' : '/en/'} class="brand-mark">
+        <img class="brand-symbol" src="/favicon-32x32.png" alt="" width="28" height="28" />
+        <span>{lang === 'pt-BR' ? SITE.name : SITE.nameEN}</span>
+      </a>
+      
+      <div class="flex items-center gap-4">
+        <ul class="site-links" role="list">
+          {navItems.map(item => (
+            <li>
+              <a
+                href={item.href}
+                class="nav-link"
+                aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        
+        <!-- Language Switcher -->
+        <div class="locale-switcher">
+          <a
+            href="/pt/"
+            class={`locale-option ${lang === 'pt-BR' ? 'is-active' : ''}`}
+            aria-label="Português"
+            lang="pt-BR"
+          >
+            PT
+          </a>
+          <a
+            href="/en/"
+            class={`locale-option ${lang === 'en' ? 'is-active' : ''}`}
+            aria-label="English"
+            lang="en"
+          >
+            EN
+          </a>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <button
+          type="button"
+          class="mobile-menu-button"
+          aria-label={lang === 'pt-BR' ? 'Abrir menu' : 'Open menu'}
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+      <ul class="px-6 py-4 space-y-2" role="list">
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class="mobile-menu-link"
+              aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main id="main-content" class="flex-1">
+    <slot />
+  </main>
+  
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Brand -->
+        <div>
+          <a href={lang === 'pt-BR' ? '/pt/' : '/en/'} class="brand-mark footer-brand">
+            <img class="brand-symbol" src="/favicon-32x32.png" alt="" width="28" height="28" />
+            {lang === 'pt-BR' ? SITE.name : SITE.nameEN}
+          </a>
+          <p class="mt-2 text-body-sm text-mute">
+            {lang === 'pt-BR'
+              ? 'Ferramenta gratuita para conversão de texto. Processamento local no navegador.'
+              : 'Free text conversion tool. All processing happens locally in your browser.'}
+          </p>
+        </div>
+        
+        <!-- Tools -->
+        <div>
+          <h3 class="font-label-sm text-ink mb-3">
+            {lang === 'pt-BR' ? 'Ferramentas' : 'Tools'}
+          </h3>
+          <ul class="space-y-2" role="list">
+            {footerLinks.tools.map(link => (
+              <li>
+                <a href={link.href} class="text-body-sm text-body hover:text-ink transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        <!-- Legal -->
+        <div>
+          <h3 class="font-label-sm text-ink mb-3">
+            {lang === 'pt-BR' ? 'Legal' : 'Legal'}
+          </h3>
+          <ul class="space-y-2" role="list">
+            {footerLinks.legal.map(link => (
+              <li>
+                <a href={link.href} class="text-body-sm text-body hover:text-ink transition-colors">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-hairline flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-body-sm text-mute">
+          &copy; {new Date().getFullYear()} {SITE.name}. {lang === 'pt-BR' ? 'Todos os direitos reservados.' : 'All rights reserved.'}
+        </p>
+        <p class="text-body-sm text-faint">
+          {lang === 'pt-BR'
+            ? 'Texto processado no navegador. O conteúdo digitado não é enviado pelo conversor.'
+            : 'Text processed in your browser. Entered content is not uploaded by the converter.'}
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  
+  <!-- Mobile Menu Script -->
+  <script>
+    const menuButton = document.querySelector('[aria-controls="mobile-menu"]');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+    
+    // Dark mode toggle
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</body>
+</html>

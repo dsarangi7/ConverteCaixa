@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Accessibility Statement - ConverteCaixa';
+const description = 'ConverteCaixa Accessibility Statement. Our commitment to web accessibility.';
+const canonical = `${SITE.baseUrl}/en/accessibility-statement/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Accessibility Statement</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Last updated: September 7, 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>Our commitment</h2>
+        <p>
+          ConverteCaixa is committed to ensuring digital accessibility for all people,
+          including people with disabilities. We are committed to following internationally
+          recognized web accessibility guidelines.
+        </p>
+
+        <h2>Accessibility standards</h2>
+        <p>
+          We strive to conform ConverteCaixa to Level AA of the{' '}
+          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer">
+            Web Content Accessibility Guidelines (WCAG) 2.1
+          </a>{' '}
+          published by the World Wide Web Consortium (W3C).
+        </p>
+
+        <h2>Accessibility measures implemented</h2>
+
+        <h3>Semantic structure</h3>
+        <ul>
+          <li>Use of semantic HTML elements (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>).</li>
+          <li>Correct heading hierarchy (<code>h1</code> through <code>h3</code>).</li>
+          <li>Ordered and unordered lists using <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code>.</li>
+        </ul>
+
+        <h3>Keyboard navigation</h3>
+        <ul>
+          <li>All interactive elements are keyboard accessible (Tab, Enter, Space).</li>
+          <li>Visible focus indicators on all interactive elements.</li>
+          <li>"Skip to main content" link for quick navigation.</li>
+          <li>Mobile menu accessible via keyboard.</li>
+        </ul>
+
+        <h3>Screen readers</h3>
+        <ul>
+          <li>Alternative text (<code>aria-label</code>, <code>aria-hidden</code>) for visual elements.</li>
+          <li>ARIA states and properties (<code>aria-expanded</code>, <code>aria-current</code>, <code>aria-controls</code>).</li>
+          <li>Landmark regions (<code>aria-label</code> for navigation).</li>
+          <li>Status content (<code>role="status"</code>, <code>aria-live="polite"</code>).</li>
+        </ul>
+
+        <h3>Color contrast</h3>
+        <ul>
+          <li>Text with minimum 4.5:1 contrast ratio against background (AA level).</li>
+          <li>Large text with minimum 3:1 contrast ratio against background.</li>
+          <li>Focus indicators with adequate contrast.</li>
+        </ul>
+
+        <h3>Multimedia content</h3>
+        <ul>
+          <li>No automatic audio or video content is played.</li>
+          <li>Animations respect the <code>prefers-reduced-motion</code> preference.</li>
+        </ul>
+
+        <h3>Responsiveness</h3>
+        <ul>
+          <li>Layout adapts to different screen sizes.</li>
+          <li>Text is resizable up to 200% without loss of content.</li>
+          <li>Functions are available on mobile devices and tablets.</li>
+        </ul>
+
+        <h2>Compatibility with browsers and assistive technologies</h2>
+        <p>
+          ConverteCaixa is designed to work with:
+        </p>
+        <ul>
+          <li>Modern browsers (Chrome, Firefox, Safari, Edge).</li>
+          <li>Screen readers (NVDA, JAWS, VoiceOver).</li>
+          <li>Keyboard navigation.</li>
+          <li>Browser zoom.</li>
+          <li>Operating system high contrast mode.</li>
+        </ul>
+
+        <h2>Known limitations</h2>
+        <p>
+          While we strive to ensure full accessibility, there may be some limitations:
+        </p>
+        <ul>
+          <li>Text conversion is a JavaScript-based tool; users with JavaScript disabled will not be able to use it.</li>
+          <li>Some advanced converter features may have visual complexity that can be challenging for some users.</li>
+        </ul>
+
+        <h2>Feedback and contact</h2>
+        <p>
+          If you encounter accessibility difficulties using ConverteCaixa or have suggestions for improvements,
+          please contact us:
+        </p>
+        <p>
+          Email: <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+        </p>
+        <p>
+          We take accessibility seriously and will respond to all accessibility requests within 5 business days.
+        </p>
+
+        <h2>Conformance</h2>
+        <p>
+          This accessibility statement was updated on September 7, 2026.
+          We are in the process of auditing to ensure full conformance with WCAG 2.1 Level AA.
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Owner: ConverteCaixa — contact@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

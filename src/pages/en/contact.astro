@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Contact - ConverteCaixa';
+const description = 'Get in touch with ConverteCaixa. Send your questions, suggestions, or feedback.';
+const canonical = `${SITE.baseUrl}/en/contact/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Contact</h1>
+      <p class="font-body-lg text-mute mb-8">
+        We're here to help. Send us a message and we'll respond as soon as possible.
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>How to get in touch</h2>
+        <p>
+          If you have questions, suggestions, found a bug, or want to provide feedback about ConverteCaixa,
+          please contact us via email:
+        </p>
+
+        <div class="card my-6">
+          <p class="font-body-lg text-ink">
+            <strong>Email:</strong>{' '}
+            <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+          </p>
+        </div>
+
+        <h2>Subject types</h2>
+        <p>
+          To help us respond more quickly, please include a brief description of the reason for your contact in the subject line, such as:
+        </p>
+        <ul>
+          <li><strong>Question</strong> — Questions about using the tool.</li>
+          <li><strong>Bug</strong> — Reports of issues or unexpected behavior.</li>
+          <li><strong>Suggestion</strong> — Ideas for improvements or new features.</li>
+          <li><strong>Feedback</strong> — Opinions about your experience with ConverteCaixa.</li>
+          <li><strong>Other</strong> — Miscellaneous topics.</li>
+        </ul>
+
+        <h2>Response time</h2>
+        <p>
+          We strive to respond to all messages within 48 business hours.
+          During periods of high demand, response time may be slightly longer.
+        </p>
+
+        <h2>Technical support</h2>
+        <p>
+          Before sending a message, please check if your question is already answered in the{' '}
+          <a href="/en/#faq">FAQ on the homepage</a>.
+          This may help resolve your issue more quickly.
+        </p>
+
+        <h2>Privacy</h2>
+        <p>
+          All text processing on ConverteCaixa is done locally in your browser.
+          Your data is never sent to our servers.
+          For more details, see our{' '}
+          <a href="/en/privacy-policy/">Privacy Policy</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

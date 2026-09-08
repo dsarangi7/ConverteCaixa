@@ -1,0 +1,9 @@
+# ConverteCaixa - Robots.txt
+# https://convertecaixa.com
+
+User-agent: *
+Allow: /
+
+Disallow: /api/
+
+Sitemap: https://convertecaixa.com/sitemap.xml

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1798 384" role="img" aria-labelledby="title desc">
+  <title id="title">Microsoft Word Change Case menu</title>
+  <desc id="desc">Microsoft Word Home ribbon with the Change Case dropdown highlighted by a red arrow.</desc>
+  <rect width="1798" height="384" fill="#ededed"/>
+  <rect x="0" y="0" width="1798" height="8" fill="#1758a6"/>
+  <rect x="0" y="8" width="1798" height="50" fill="#f6f6f6"/>
+  <text x="18" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">File</text>
+  <text x="87" y="39" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#333">Home</text>
+  <line x1="86" y1="55" x2="141" y2="55" stroke="#2d5d9e" stroke-width="3"/>
+  <text x="177" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Insert</text>
+  <text x="259" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Draw</text>
+  <text x="341" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Design</text>
+  <text x="436" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Layout</text>
+  <text x="535" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">References</text>
+  <text x="660" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Mailings</text>
+  <text x="759" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Review</text>
+  <text x="852" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">View</text>
+  <text x="941" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Help</text>
+  <text x="1011" y="39" font-family="Arial,sans-serif" font-size="18" fill="#303030">Acrobat</text>
+  <rect x="0" y="58" width="1798" height="136" fill="#f8f8f8" stroke="#d0d0d0"/>
+  <text x="25" y="95" font-family="Arial,sans-serif" font-size="17" fill="#555">Clipboard</text>
+  <text x="231" y="94" font-family="Arial,sans-serif" font-size="17" fill="#555">Font</text>
+  <text x="581" y="94" font-family="Arial,sans-serif" font-size="17" fill="#555">Paragraph</text>
+  <rect x="233" y="68" width="142" height="32" fill="#fff" stroke="#bbb"/>
+  <text x="243" y="90" font-family="Arial,sans-serif" font-size="17" fill="#333">Arial</text>
+  <rect x="382" y="68" width="72" height="32" fill="#fff" stroke="#bbb"/>
+  <text x="391" y="90" font-family="Arial,sans-serif" font-size="17" fill="#333">小五</text>
+  <text x="465" y="92" font-family="Arial,sans-serif" font-size="24" fill="#444">A</text>
+  <text x="505" y="92" font-family="Arial,sans-serif" font-size="24" fill="#444">A</text>
+  <rect x="523" y="66" width="48" height="34" fill="#dadada" stroke="#aaa"/>
+  <text x="535" y="90" font-family="Arial,sans-serif" font-size="19" fill="#444">Aa</text>
+  <path d="M345 268 L541 102" stroke="#ef433a" stroke-width="4" fill="none"/>
+  <path d="M541 102 l-17 5 8 12z" fill="#ef433a"/>
+  <rect x="524" y="101" width="218" height="272" rx="4" fill="#fff" stroke="#c8c8c8" stroke-width="2"/>
+  <text x="577" y="132" font-family="Arial,sans-serif" font-size="17" fill="#333">Sentence case.</text>
+  <text x="577" y="176" font-family="Arial,sans-serif" font-size="17" fill="#333">lowercase</text>
+  <text x="577" y="220" font-family="Arial,sans-serif" font-size="17" fill="#333">UPPERCASE</text>
+  <text x="577" y="264" font-family="Arial,sans-serif" font-size="17" fill="#333">Capitalize Each Word</text>
+  <text x="577" y="308" font-family="Arial,sans-serif" font-size="17" fill="#333">tOGGLE cASE</text>
+  <text x="577" y="348" font-family="Arial,sans-serif" font-size="17" fill="#333">Half-width</text>
+  <text x="790" y="348" font-family="Arial,sans-serif" font-size="17" fill="#333">Full-width</text>
+</svg>

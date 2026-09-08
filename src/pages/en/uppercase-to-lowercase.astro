@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+
+const title = 'Uppercase to Lowercase Converter — ConverteCaixa';
+const description = 'Convert uppercase text to lowercase instantly. Free online tool. All processing happens locally in your browser.';
+const canonical = `${SITE.baseUrl}/en/uppercase-to-lowercase/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Uppercase to Lowercase Converter</h1>
+      <p class="font-body-lg text-body mb-6">
+        Convert uppercase text to lowercase instantly. Paste your ALL CAPS text below.
+      </p>
+
+      <Converter lang={lang} initialMode="lower" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">How to Change Upper Case to Lower Case</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          Converting uppercase text to lowercase is one of the most common text transformations.
+          Whether you accidentally left Caps Lock on or need to normalize text for a document, this tool makes it easy.
+        </p>
+
+        <h3>Why Convert Uppercase to Lowercase?</h3>
+        <ul>
+          <li><strong>Fix accidental Caps Lock</strong> — When you type a long message with Caps Lock enabled</li>
+          <li><strong>Normalize text</strong> — Make inconsistent capitalization uniform</li>
+          <li><strong>Prepare for editing</strong> — Convert text before pasting into documents or emails</li>
+          <li><strong>Code formatting</strong> — Convert string literals to lowercase for comparisons</li>
+        </ul>
+
+        <h3>Steps to Convert</h3>
+        <ol>
+          <li>Paste or type your uppercase text in the input box above</li>
+          <li>The "lowercase" mode is already selected by default</li>
+          <li>Copy the converted text or download it as a TXT file</li>
+        </ol>
+
+        <h3>Examples</h3>
+        <p>
+          <strong>Input:</strong> "THIS IS AN EXAMPLE OF UPPERCASE TEXT"
+        </p>
+        <p>
+          <strong>Output:</strong> "this is an example of uppercase text"
+        </p>
+
+        <p>
+          <strong>Input:</strong> "HELLO WORLD! HOW ARE YOU TODAY?"
+        </p>
+        <p>
+          <strong>Output:</strong> "hello world! how are you today?"
+        </p>
+
+        <h3>Common Use Cases</h3>
+        <ul>
+          <li><strong>Email correspondence</strong> — Convert SHOUTING text to normal case</li>
+          <li><strong>Social media</strong> — Fix ALL CAPS posts before sharing</li>
+          <li><strong>Document editing</strong> — Normalize text copied from other sources</li>
+          <li><strong>Data processing</strong> — Standardize text for databases or spreadsheets</li>
+        </ul>
+
+        <h3>Preserving Formatting</h3>
+        <p>
+          ConverteCaixa preserves all formatting during conversion:
+        </p>
+        <ul>
+          <li>Line breaks and paragraphs are maintained</li>
+          <li>Spaces and tabs are preserved</li>
+          <li>Punctuation marks remain unchanged</li>
+          <li>Numbers and special characters are unaffected</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline bg-hairline-soft">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>How do I change upper case to lower case in Microsoft Word?</h3>
+          <p>
+            In Microsoft Word:
+          </p>
+          <ol>
+            <li>Select the uppercase text</li>
+            <li>Press <code>Shift+F3</code> to toggle between cases</li>
+            <li>Or go to <strong>Format &gt; Text &gt; lowercase</strong></li>
+          </ol>
+        </div>
+
+        <div>
+          <h3>How do I change upper case to lower case in Google Sheets?</h3>
+          <p>
+            Use the formula: <code>=LOWER(A1)</code>
+          </p>
+          <p>
+            Replace <code>A1</code> with the cell reference containing your uppercase text.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I change upper case to lower case in Excel?</h3>
+          <p>
+            Use the formula: <code>=LOWER(A1)</code>
+          </p>
+          <p>
+            You can also use <code>=PROPER(A1)</code> to capitalize the first letter of each word.
+          </p>
+        </div>
+
+        <div>
+          <h3>Can I convert just part of my text?</h3>
+          <p>
+            Yes. Select and paste only the text you want to convert, or use the "Compare" button to see the difference and manually adjust.
+          </p>
+        </div>
+
+        <div>
+          <h3>Does this work with accented characters?</h3>
+          <p>
+            Yes. ConverteCaixa handles accented characters (like é, ã, ç) correctly, converting only the case while preserving the accents.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">See Also</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            All-in-one text case conversion tool
+          </div>
+        </a>
+        <a href="/en/sentence-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Sentence Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Capitalize the first letter of each sentence
+          </div>
+        </a>
+        <a href="/en/title-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Title Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Apply title capitalization rules
+          </div>
+        </a>
+        <a href="/pt/converter-maiusculas-minusculas/" class="card hover:border-ink transition-colors group" lang="pt-BR">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Converter Maiúsculas e Minúsculas
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Versão em português — ConverteCaixa
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+
+const title = 'Title Case Converter — ConverteCaixa';
+const description = 'Convert text to title case instantly. Apply capitalization rules for titles, headlines, and headings. Free online tool.';
+const canonical = `${SITE.baseUrl}/en/title-case-converter/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Title Case Converter</h1>
+      <p class="font-body-lg text-body mb-6">
+        Apply proper title capitalization rules. Paste your text below.
+      </p>
+
+      <Converter lang={lang} initialMode="title" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">What is Title Case?</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          Title case is a capitalization style where the first letter of each significant word is capitalized.
+          Minor words like articles, short prepositions, and conjunctions are typically left lowercase.
+        </p>
+
+        <h3>When to Use Title Case</h3>
+        <ul>
+          <li><strong>Book titles</strong> — "The Art of War"</li>
+          <li><strong>Article headlines</strong> — "How to Improve Your Writing"</li>
+          <li><strong>Presentation titles</strong> — "Introduction to Machine Learning"</li>
+          <li><strong>Section headings</strong> — "Getting Started with Python"</li>
+        </ul>
+
+        <h3>Title Case Rules</h3>
+        <p>
+          The general rules for title case are:
+        </p>
+        <ul>
+          <li>Capitalize the first and last words</li>
+          <li>Capitalize all nouns, pronouns, verbs, adjectives, and adverbs</li>
+          <li>Lowercase articles (a, an, the)</li>
+          <li>Lowercase short prepositions (in, on, at, to, for, of, with)</li>
+          <li>Lowercase conjunctions (and, but, or, nor, for)</li>
+        </ul>
+
+        <h3>Style Guide Differences</h3>
+        
+        <h4>APA Style</h4>
+        <p>
+          Capitalize words with four or more letters. Capitalize the first word after a colon.
+        </p>
+
+        <h4>MLA Style</h4>
+        <p>
+          Capitalize all words except articles, short prepositions, and conjunctions.
+        </p>
+
+        <h4>Chicago Style</h4>
+        <p>
+          Capitalize the first and last words, and all nouns, pronouns, verbs, adjectives, and adverbs.
+        </p>
+
+        <h4>AP Style</h4>
+        <p>
+          Capitalize words with three or more letters. Capitalize prepositions regardless of length.
+        </p>
+
+        <h3>Examples</h3>
+        <p>
+          <strong>Input:</strong> "the art of war is a book about strategy"
+        </p>
+        <p>
+          <strong>Output:</strong> "The Art of War Is a Book About Strategy"
+        </p>
+
+        <p>
+          <strong>Input:</strong> "how to write a research paper in apa format"
+        </p>
+        <p>
+          <strong>Output:</strong> "How to Write a Research Paper in APA Format"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline bg-hairline-soft">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>What is the difference between title case and sentence case?</h3>
+          <p>
+            <strong>Title case</strong> capitalizes the first letter of each significant word. <strong>Sentence case</strong> capitalizes only the first letter of each sentence. Use title case for headings and sentence case for body text.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I convert to title case in Microsoft Word?</h3>
+          <p>
+            Select your text and go to <strong>Format &gt; Text &gt; Title Case</strong>. Note that Word's title case may not follow all style guide rules.
+          </p>
+        </div>
+
+        <div>
+          <h3>Which style guide should I follow?</h3>
+          <p>
+            The style guide depends on your field:
+          </p>
+          <ul>
+            <li><strong>APA</strong> — Psychology, education, social sciences</li>
+            <li><strong>MLA</strong> — Literature, humanities, arts</li>
+            <li><strong>Chicago</strong> — History, publishing, business</li>
+            <li><strong>AP</strong> — Journalism, news media</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Does title case work with acronyms?</h3>
+          <p>
+            Yes. Acronyms like "API", "HTML", or "CSS" remain uppercase in title case.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 border-t border-hairline">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">See Also</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            All-in-one text case conversion tool
+          </div>
+        </a>
+        <a href="/en/sentence-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Sentence Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Capitalize the first letter of each sentence
+          </div>
+        </a>
+        <a href="/en/uppercase-to-lowercase/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Uppercase to Lowercase
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Convert uppercase text to lowercase
+          </div>
+        </a>
+        <a href="/pt/converter-maiusculas-minusculas/" class="card hover:border-ink transition-colors group" lang="pt-BR">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Converter Maiúsculas e Minúsculas
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Versão em português — ConverteCaixa
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

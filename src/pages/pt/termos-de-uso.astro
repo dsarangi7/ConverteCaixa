@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Termos de Uso - ConverteCaixa';
+const description = 'Termos de Uso do ConverteCaixa. Leia os termos e condições de uso da ferramenta.';
+const canonical = `${SITE.baseUrl}/pt/termos-de-uso/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Termos de Uso</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Última atualização: 7 de setembro de 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>1. Aceitação dos Termos</h2>
+        <p>
+          Ao acessar e usar o ConverteCaixa, você concorda com estes Termos de Uso.
+          Se você não concordar com algum destes termos, não use a ferramenta.
+        </p>
+
+        <h2>2. Descrição do Serviço</h2>
+        <p>
+          O ConverteCaixa é uma ferramenta gratuita online que permite converter texto entre diferentes
+          estilos de capitalização. Todo o processamento ocorre localmente no navegador do usuário.
+        </p>
+
+        <h2>3. Uso Aceitável</h2>
+        <p>Ao usar o ConverteCaixa, você concorda em:</p>
+        <ul>
+          <li>Não usar a ferramenta para fins ilegais ou não autorizados.</li>
+          <li>Não tentar comprometer a segurança ou integridade da ferramenta.</li>
+          <li>Não usar bots, scripts automatizados ou outros meios para acessar o serviço em excesso.</li>
+          <li>Não reproduzir, duplicar ou copiar a ferramenta para fins comerciais sem autorização.</li>
+        </ul>
+
+        <h2>4. Propriedade Intelectual</h2>
+        <p>
+          O código-fonte, design e conteúdo do ConverteCaixa são protegidos por direitos autorais.
+          Você pode usar a ferramenta livremente para fins pessoais e comerciais,
+          mas não pode redistribuir, revender ou criar trabalhos derivados sem autorização prévia.
+        </p>
+
+        <h2>5. Isenção de Garantias</h2>
+        <p>
+          O ConverteCaixa é fornecido "como está", sem garantias de qualquer tipo, expressas ou implícitas.
+          Não garantimos que a ferramenta estará disponível ininterruptamente ou que será livre de erros.
+        </p>
+
+        <h2>6. Limitação de Responsabilidade</h2>
+        <p>
+          Em nenhuma circunstância o ConverteCaixa será responsável por quaisquer danos diretos, indiretos,
+          incidentais, especiais ou consequenciais decorrentes do uso ou incapacidade de usar a ferramenta,
+          incluindo mas não se limitando a perda de dados, lucros cessantes ou interrupção de negócios.
+        </p>
+
+        <h2>7. Privacidade</h2>
+        <p>
+          O processamento de texto é feito inteiramente no navegador do usuário.
+          Nenhum conteúdo de texto é coletado ou transmitido. Para mais detalhes, consulte nossa{' '}
+          <a href="/pt/politica-de-privacidade/">Política de Privacidade</a>.
+        </p>
+
+        <h2>8. Disponibilidade</h2>
+        <p>
+          O ConverteCaixa é um serviço gratuito e pode ser desativado a qualquer momento,
+          sem aviso prévio. Não oferecemos garantia de disponibilidade contínua.
+        </p>
+
+        <h2>9. Alterações nos Termos</h2>
+        <p>
+          Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento.
+          As alterações entrarão em vigor imediatamente após a publicação na página.
+          O uso continuado da ferramenta após alterações constitui aceitação dos novos termos.
+        </p>
+
+        <h2>10. Legislação Aplicável</h2>
+        <p>
+          Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil.
+          Qualquer disputa será submetida à jurisdição dos tribunais brasileiros.
+        </p>
+
+        <h2>11. Contato</h2>
+        <p>
+          Se você tiver dúvidas sobre estes Termos de Uso, entre em contato:
+        </p>
+        <p>
+          E-mail: <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Responsável: ConverteCaixa — contato@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

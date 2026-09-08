@@ -1,0 +1,9 @@
+---
+// Sitemap page - redirects to sitemap.xml
+return new Response(null, {
+  status: 301,
+  headers: {
+    'Location': '/sitemap.xml',
+  },
+});
+---

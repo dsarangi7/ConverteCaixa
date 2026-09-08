@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+
+const title = 'Conversor de Texto: Maiúsculas e Minúsculas Online | ConverteCaixa';
+const description = 'Converta texto para maiúsculas, minúsculas, frase, título e mais. Conversor online gratuito, rápido e privado, com processamento local no navegador.';
+const canonical = `${SITE.baseUrl}/pt/`;
+const faqItems = [
+  { question: 'O ConverteCaixa envia meu texto para um servidor?', answer: 'Não. Todo o processamento acontece localmente no seu navegador e o texto não é enviado para um servidor.' },
+  { question: 'Posso converter texto para maiúsculas, minúsculas e frase?', answer: 'Sim. O conversor oferece maiúsculas, minúsculas, frase, título, capitalizado, inverso, alternado e outros modos.' },
+  { question: 'Posso usar o conversor no celular?', answer: 'Sim. A ferramenta funciona em celulares, tablets e computadores sem instalar aplicativos.' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+  faqItems={faqItems}
+>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">ConverteCaixa</h1>
+      <p class="font-body-lg text-body mb-6">
+        Ferramenta gratuita para converter maiúsculas e minúsculas
+      </p>
+
+      <Converter lang={lang} initialMode="sentence" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+
+      <div class="benefit-strip" aria-label="Benefícios do conversor">
+        <div><strong>100% privado</strong><span>Texto processado no navegador</span></div>
+        <div><strong>8 modos</strong><span>Do uppercase ao title case</span></div>
+        <div><strong>Sem cadastro</strong><span>Copie ou baixe o resultado</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section examples-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-heading-row">
+        <div>
+          <span class="font-mono-eyebrow">Exemplos práticos</span>
+          <h2 class="font-heading-md text-ink">Use com Word e Excel</h2>
+        </div>
+        <p class="section-intro">Referências rápidas para os fluxos de trabalho mais comuns.</p>
+      </div>
+      <div class="examples-grid">
+        <figure class="example-card">
+          <img src="/examples/word-case-example.svg" alt="Exemplo do menu Alterar Maiúsculas e Minúsculas no Microsoft Word" loading="lazy" />
+          <figcaption>
+            <strong>Microsoft Word</strong>
+            <span>Selecione o texto, abra <em>Alterar Maiúsculas e Minúsculas</em> e escolha o formato desejado.</span>
+          </figcaption>
+        </figure>
+        <figure class="example-card">
+          <img src="/examples/excel-case-example.svg" alt="Exemplo das fórmulas UPPER LOWER e PROPER no Microsoft Excel" loading="lazy" />
+          <figcaption>
+            <strong>Microsoft Excel</strong>
+            <span>Use <code>UPPER()</code>, <code>LOWER()</code> ou <code>PROPER()</code> ao lado da coluna original.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section homepage-about">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Sobre o ConverteCaixa</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          O ConverteCaixa é uma ferramenta gratuita para conversão de texto que funciona inteiramente no seu navegador.
+          Seu texto é transformado no navegador e não é enviado pelo conversor. A página em si é entregue pela internet.
+        </p>
+
+        <h3>Como converter maiúsculas e minúsculas</h3>
+        <p>
+          Cole ou digite seu texto na caixa de entrada, selecione o modo de conversão desejado e o resultado aparecerá instantaneamente.
+          Você pode copiar o resultado, baixar como arquivo TXT ou comparar lado a lado com o original.
+        </p>
+
+        <h3>Modos de conversão disponíveis</h3>
+        <ul>
+          <li><strong>Frase</strong> — Primeira letra de cada frase em maiúscula</li>
+          <li><strong>Minúsculas</strong> — Todas as letras em minúsculas</li>
+          <li><strong>MAIÚSCULAS</strong> — Todas as letras em maiúsculas</li>
+          <li><strong>Capitalizado</strong> — Primeira letra de cada palavra em maiúscula</li>
+          <li><strong>Título</strong> — Regras de capitalização para títulos</li>
+          <li><strong>Inverso</strong> — Inverter maiúsculas e minúsculas</li>
+          <li><strong>Alternado</strong> — Alternar entre maiúsculas e minúsculas</li>
+          <li><strong>Alternar</strong> — Trocar o caso de cada letra</li>
+        </ul>
+
+        <h3>Atalhos de teclado</h3>
+        <ul>
+          <li><code>Ctrl+Z</code> — Desfazer</li>
+          <li><code>Ctrl+Y</code> — Refazer</li>
+        </ul>
+
+        <h3>Privacidade e segurança</h3>
+        <p>
+          Toda a conversão acontece localmente no navegador. O conversor não envia, armazena ou analisa o texto digitado.
+          Você pode verificar isso inspecionando o código-fonte da página ou monitorando o tráfego de rede do navegador.
+        </p>
+
+        <h3>Suporte a caracteres especiais</h3>
+        <p>
+          O ConverteCaixa suporta caracteres especiais do português (acentos, cedilha, til) e outros caracteres Unicode.
+          Quebras de linha, parágrafos e espaços são preservados durante a conversão.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section homepage-faq">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Perguntas frequentes</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>O ConverteCaixa envia meu texto para um servidor?</h3>
+          <p>
+            Não. A conversão acontece localmente no navegador. O conversor não envia seu texto, embora o site seja entregue pela internet.
+          </p>
+        </div>
+
+        <div>
+          <h3>Posso usar o ConverteCaixa offline?</h3>
+          <p>
+            Sim. Como todo o processamento é feito no navegador, a ferramenta funciona mesmo sem conexão com a internet, desde que a página já tenha sido carregada.
+          </p>
+        </div>
+
+        <div>
+          <h3>Quais caracteres são suportados?</h3>
+          <p>
+            O ConverteCaixa suporta caracteres Unicode completos, incluindo todos os caracteres especiais do português, símbolos e caracteres de outros idiomas.
+          </p>
+        </div>
+
+        <div>
+          <h3>Posso usar o ConverteCaixa no celular?</h3>
+          <p>
+            Sim. A ferramenta é totalmente responsiva e funciona em qualquer dispositivo, incluindo smartphones e tablets.
+          </p>
+        </div>
+
+        <div>
+          <h3>Como converter maiúsculas e minúsculas no Microsoft Word?</h3>
+          <p>
+            No Microsoft Word, você pode usar a tecla <code>Shift+F3</code> para alternar entre maiúsculas, minúsculas e capitalizado.
+            Para mais opções, vá em <strong>Formatar &gt; Texto &gt; Caixa Alta/Baixa</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h3>Como converter texto no Google Sheets?</h3>
+          <p>
+            No Google Sheets, use as funções <code>UPPER()</code>, <code>LOWER()</code> e <code>PROPER()</code> para converter texto em maiúsculas, minúsculas e capitalizado, respectivamente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Outras ferramentas</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/pt/converter-maiusculas-minusculas/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Converter Maiúsculas e Minúsculas
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Ferramenta completa para conversão de texto
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

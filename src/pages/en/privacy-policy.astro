@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Privacy Policy - ConverteCaixa';
+const description = 'ConverteCaixa Privacy Policy. Learn how your data is handled and why processing is 100% local.';
+const canonical = `${SITE.baseUrl}/en/privacy-policy/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Privacy Policy</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Last updated: September 7, 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>Introduction</h2>
+        <p>
+          This Privacy Policy describes how ConverteCaixa handles user information.
+          ConverteCaixa is a text conversion tool that processes all data locally in the user's browser.
+        </p>
+
+        <h2>Local data processing</h2>
+        <p>
+          <strong>The converter does not collect, store, or transmit text typed or pasted by the user.</strong>
+          All text processing happens entirely in the browser using standard JavaScript.
+          The page and its resources are delivered over the internet, including through hosting and CDN infrastructure, but the converter does not upload the text content.
+        </p>
+        <p>
+          This means:
+        </p>
+        <ul>
+          <li>Text remains in the browser during conversion.</li>
+          <li>Entered content is not uploaded by the converter to logs or APIs.</li>
+          <li>No text data is shared with third parties.</li>
+          <li>No text data is used for advertising or analytics purposes.</li>
+        </ul>
+
+        <h2>Data that may be automatically collected</h2>
+        <p>
+          Like any website, ConverteCaixa may automatically collect certain non-identifiable information
+          through standard web technologies, including:
+        </p>
+        <ul>
+          <li>IP address (anonymized in server logs).</li>
+          <li>Browser type and operating system.</li>
+          <li>Pages visited and time spent.</li>
+          <li>Referral source (the site you came from).</li>
+        </ul>
+        <p>
+          This information is used exclusively for statistical purposes and service improvement,
+          and is not linked to any text content processed by the user.
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          ConverteCaixa may use strictly necessary cookies for the website to function,
+          such as language and theme preferences (light/dark).
+          For more details, see our{' '}
+          <a href="/en/cookie-policy/">Cookie Policy</a>.
+        </p>
+
+        <h2>Third-party services</h2>
+        <p>
+          ConverteCaixa may use third-party services for hosting, CDN delivery, and analytics.
+          These services may collect standard browsing information but have no access to the content
+          of text processed by the user, as that processing occurs exclusively in the browser.
+        </p>
+
+        <h2>External links</h2>
+        <p>
+          The site may contain links to other websites. ConverteCaixa is not responsible for the
+          privacy practices of external sites. We recommend that you read the privacy policies
+          of any website you visit.
+        </p>
+
+        <h2>Children's privacy</h2>
+        <p>
+          ConverteCaixa does not intentionally collect data from children under 13 years of age.
+          Since no personal data is collected by the tool, there is no risk of exposure of children's data.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          This Privacy Policy may be updated periodically. Any changes will be published
+          on this page with the revised update date. We recommend that you review this page regularly.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          If you have questions about this Privacy Policy, please contact us:
+        </p>
+        <p>
+          Email: <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Owner: ConverteCaixa — contact@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

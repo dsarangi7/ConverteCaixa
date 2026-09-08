@@ -1,0 +1,215 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Converter from "../../components/Converter.astro";
+import AdPlaceholder from "../../components/AdPlaceholder.astro";
+import { SITE } from "../../lib/config";
+
+const lang = 'en' as const;
+
+const title = 'Case Converter: Uppercase, Lowercase & Sentence Case Online';
+const description = 'Free online case converter for uppercase, lowercase, sentence case, title case and more. Fast, private text conversion processed locally in your browser.';
+const canonical = `${SITE.baseUrl}/en/`;
+const faqItems = [
+  { question: 'Does ConverteCaixa send my text to a server?', answer: 'No. All processing happens locally in your browser and your text is never sent to a server.' },
+  { question: 'Can I convert text to uppercase, lowercase and sentence case?', answer: 'Yes. The converter includes uppercase, lowercase, sentence case, title case, capitalized, inverse, alternating and other modes.' },
+  { question: 'Can I use this case converter on mobile?', answer: 'Yes. The tool works on phones, tablets and desktop computers without installing an app.' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+  faqItems={faqItems}
+>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Case Converter by ConverteCaixa</h1>
+      <p class="font-body-lg text-body mb-6">
+        Free online case converter. Transform your text instantly.
+      </p>
+
+      <Converter lang={lang} initialMode="sentence" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+
+      <div class="benefit-strip" aria-label="Converter benefits">
+        <div><strong>100% private</strong><span>Processed in your browser</span></div>
+        <div><strong>8 modes</strong><span>From uppercase to title case</span></div>
+        <div><strong>No sign-up</strong><span>Copy or download the result</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section examples-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="section-heading-row">
+        <div>
+          <span class="font-mono-eyebrow">Practical examples</span>
+          <h2 class="font-heading-md text-ink">Use it with Word and Excel</h2>
+        </div>
+        <p class="section-intro">Quick references for the two most common text-editing workflows.</p>
+      </div>
+      <div class="examples-grid">
+        <figure class="example-card">
+          <img src="/examples/word-case-example.svg" alt="Microsoft Word Change Case menu example" loading="lazy" />
+          <figcaption>
+            <strong>Microsoft Word</strong>
+            <span>Select text, open <em>Change Case</em>, then choose the format you need.</span>
+          </figcaption>
+        </figure>
+        <figure class="example-card">
+          <img src="/examples/excel-case-example.svg" alt="Microsoft Excel UPPER LOWER and PROPER formulas example" loading="lazy" />
+          <figcaption>
+            <strong>Microsoft Excel</strong>
+            <span>Use <code>UPPER()</code>, <code>LOWER()</code>, or <code>PROPER()</code> beside your source column.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section homepage-about">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">About ConverteCaixa</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          ConverteCaixa is a free text conversion tool that runs entirely in your browser.
+          Your text is transformed in your browser and is not uploaded by the converter. The page itself is delivered over the internet.
+        </p>
+
+        <h3>How to Convert Text Case</h3>
+        <p>
+          Paste or type your text in the input box, select your desired conversion mode, and the result appears instantly.
+          You can copy the result, download it as a TXT file, or compare it side by side with the original.
+        </p>
+
+        <h3>Available Conversion Modes</h3>
+        <ul>
+          <li><strong>Sentence</strong> — Capitalize the first letter of each sentence</li>
+          <li><strong>lowercase</strong> — All letters in lowercase</li>
+          <li><strong>UPPERCASE</strong> — All letters in uppercase</li>
+          <li><strong>Capitalized</strong> — Capitalize the first letter of every word</li>
+          <li><strong>Title Case</strong> — Capitalization rules for titles</li>
+          <li><strong>Inverse</strong> — Swap uppercase and lowercase</li>
+          <li><strong>aLtErNaTiNg</strong> — Alternate between uppercase and lowercase</li>
+          <li><strong>tOGGLE</strong> — Toggle the case of each letter</li>
+        </ul>
+
+        <h3>Keyboard Shortcuts</h3>
+        <ul>
+          <li><code>Ctrl+Z</code> — Undo</li>
+          <li><code>Ctrl+Y</code> — Redo</li>
+        </ul>
+
+        <h3>Privacy and Security</h3>
+        <p>
+          All conversion happens locally in your browser. The converter does not upload, store, or analyze the text you enter.
+          You can verify this by inspecting the page source or monitoring your browser's network traffic.
+        </p>
+
+        <h3>Special Character Support</h3>
+        <p>
+          ConverteCaixa supports full Unicode characters, including accented letters, symbols, and characters from other languages.
+          Line breaks, paragraphs, and spaces are preserved during conversion.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section homepage-faq">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>Does ConverteCaixa send my text to a server?</h3>
+          <p>
+            No. Conversion happens locally in your browser. The converter does not upload your text, although the website itself must be delivered over the internet.
+          </p>
+        </div>
+
+        <div>
+          <h3>Can I use ConverteCaixa offline?</h3>
+          <p>
+            Yes. Since all processing is done in the browser, the tool works even without an internet connection, as long as the page has already been loaded.
+          </p>
+        </div>
+
+        <div>
+          <h3>What characters are supported?</h3>
+          <p>
+            ConverteCaixa supports full Unicode characters, including accented letters, symbols, and characters from multiple languages.
+          </p>
+        </div>
+
+        <div>
+          <h3>Can I use ConverteCaixa on my phone?</h3>
+          <p>
+            Yes. The tool is fully responsive and works on any device, including smartphones and tablets.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I change case in Microsoft Word?</h3>
+          <p>
+            In Microsoft Word, press <code>Shift+F3</code> to toggle between uppercase, lowercase, and capitalized.
+            For more options, go to <strong>Format &gt; Text &gt; Change Case</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I change case in Google Sheets?</h3>
+          <p>
+            In Google Sheets, use the functions <code>UPPER()</code>, <code>LOWER()</code>, and <code>PROPER()</code> to convert text to uppercase, lowercase, and capitalized, respectively.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Other Tools</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Complete text case conversion tool
+          </div>
+        </a>
+        <a href="/en/uppercase-to-lowercase/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Uppercase to Lowercase
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Convert uppercase text to lowercase
+          </div>
+        </a>
+        <a href="/en/sentence-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Sentence Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Capitalize the first letter of each sentence
+          </div>
+        </a>
+        <a href="/en/title-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Title Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Apply title capitalization rules
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

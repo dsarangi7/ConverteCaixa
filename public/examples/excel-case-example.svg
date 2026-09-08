@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 179" role="img" aria-labelledby="title desc">
+  <title id="title">Microsoft Excel Home ribbon example</title>
+  <desc id="desc">Microsoft Excel Home ribbon with font, alignment, number, styles, and formatting controls.</desc>
+  <rect width="1202" height="179" fill="#f4f4f4"/>
+  <rect y="0" width="1202" height="5" fill="#217346"/>
+  <rect y="5" width="1202" height="37" fill="#f8f8f8"/>
+  <text x="14" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">File</text>
+  <text x="64" y="28" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#303030">Home</text>
+  <line x1="64" y1="40" x2="101" y2="40" stroke="#217346" stroke-width="2"/>
+  <text x="128" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Insert</text>
+  <text x="190" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Draw</text>
+  <text x="249" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Page Layout</text>
+  <text x="351" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Formulas</text>
+  <text x="433" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Data</text>
+  <text x="489" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Review</text>
+  <text x="557" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">View</text>
+  <text x="611" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Help</text>
+  <text x="668" y="28" font-family="Arial,sans-serif" font-size="14" fill="#303030">Acrobat</text>
+  <rect y="42" width="1202" height="105" fill="#fafafa" stroke="#d5d5d5"/>
+  <text x="11" y="66" font-family="Arial,sans-serif" font-size="12" fill="#555">Paste</text>
+  <text x="53" y="66" font-family="Arial,sans-serif" font-size="12" fill="#555">Cut</text>
+  <text x="53" y="86" font-family="Arial,sans-serif" font-size="12" fill="#555">Copy</text>
+  <text x="14" y="136" font-family="Arial,sans-serif" font-size="12" fill="#555">Clipboard</text>
+  <rect x="168" y="49" width="168" height="25" fill="#fff" stroke="#aaa"/>
+  <text x="176" y="67" font-family="Arial,sans-serif" font-size="13" fill="#333">Arial Unicode MS</text>
+  <rect x="341" y="49" width="45" height="25" fill="#fff" stroke="#aaa"/>
+  <text x="352" y="67" font-family="Arial,sans-serif" font-size="13" fill="#333">12</text>
+  <text x="169" y="91" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#333">B</text>
+  <text x="201" y="91" font-family="Arial,sans-serif" font-size="15" font-style="italic" fill="#333">I</text>
+  <text x="228" y="91" font-family="Arial,sans-serif" font-size="15" text-decoration="underline" fill="#333">U</text>
+  <text x="274" y="91" font-family="Arial,sans-serif" font-size="15" fill="#333">▦</text>
+  <text x="313" y="91" font-family="Arial,sans-serif" font-size="15" fill="#333">▾</text>
+  <text x="400" y="66" font-family="Arial,sans-serif" font-size="14" fill="#333">A</text>
+  <text x="425" y="66" font-family="Arial,sans-serif" font-size="14" fill="#333">A</text>
+  <text x="454" y="66" font-family="Arial,sans-serif" font-size="14" fill="#333">↗</text>
+  <text x="451" y="92" font-family="Arial,sans-serif" font-size="14" fill="#333">ab ↗</text>
+  <text x="494" y="92" font-family="Arial,sans-serif" font-size="14" fill="#333">Wrap Text</text>
+  <text x="726" y="66" font-family="Arial,sans-serif" font-size="13" fill="#333">General</text>
+  <text x="738" y="93" font-family="Arial,sans-serif" font-size="14" fill="#333">$　%　,</text>
+  <rect x="909" y="50" width="28" height="27" fill="#f24b4b" stroke="#a33"/>
+  <text x="947" y="67" font-family="Arial,sans-serif" font-size="13" fill="#333">Conditional</text>
+  <text x="947" y="85" font-family="Arial,sans-serif" font-size="13" fill="#333">Formatting</text>
+  <rect x="1017" y="50" width="104" height="29" fill="#fff" stroke="#999"/>
+  <text x="1023" y="69" font-family="Arial,sans-serif" font-size="14" fill="#333">Normal</text>
+  <rect x="1021" y="86" width="100" height="28" fill="#fff" stroke="#777"/>
+  <text x="1027" y="105" font-family="Arial,sans-serif" font-size="14" fill="#333">Check Cell</text>
+  <rect y="147" width="1202" height="32" fill="#fff" stroke="#d0d0d0"/>
+  <rect x="2" y="150" width="100" height="26" fill="#fff" stroke="#aaa"/>
+  <text x="10" y="168" font-family="Arial,sans-serif" font-size="13" fill="#333">D54</text>
+  <text x="143" y="169" font-family="Arial,sans-serif" font-size="14" fill="#777">fx</text>
+  <text x="253" y="168" font-family="Arial,sans-serif" font-size="14" fill="#333">Not Started</text>
+</svg>

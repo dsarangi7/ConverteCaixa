@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'About Us - ConverteCaixa';
+const description = 'Learn about ConverteCaixa, a free text conversion tool with 100% local browser processing.';
+const canonical = `${SITE.baseUrl}/en/about/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">About ConverteCaixa</h1>
+      <p class="font-body-lg text-mute mb-8">
+        A free text conversion tool with complete privacy.
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>What is ConverteCaixa?</h2>
+        <p>
+          ConverteCaixa is a free online tool that allows you to convert text between different capitalization styles — uppercase, lowercase, sentence case, title case, inverse, and more.
+          Text conversion happens directly in your browser without uploading the text content. The website itself is delivered over the internet.
+        </p>
+
+        <h2>Why ConverteCaixa?</h2>
+        <p>
+          Unlike tools that upload text for processing, ConverteCaixa transforms the text locally in your browser.
+          This means:
+        </p>
+        <ul>
+          <li><strong>Private conversion</strong> — The converter does not upload your entered text.</li>
+          <li><strong>Speed</strong> — Instant processing with no network latency.</li>
+          <li><strong>Works offline</strong> — After loading the page, the tool works without an internet connection.</li>
+          <li><strong>Free</strong> — No signup, no limits, no hidden costs.</li>
+        </ul>
+
+        <h2>How does it work?</h2>
+        <p>
+          All processing is done using standard browser JavaScript. When you paste or type text and select a conversion mode,
+          the browser applies the transformations directly in memory. The converter does not transmit the text content for processing.
+        </p>
+        <p>
+          You can verify this by inspecting the page source code or monitoring network traffic in your browser's developer tools.
+        </p>
+
+        <h2>Technologies used</h2>
+        <p>
+          ConverteCaixa is built with:
+        </p>
+        <ul>
+          <li><strong>Tailwind CSS</strong> — Styling framework.</li>
+          <li><strong>Vanilla JavaScript</strong> — No external dependencies for text processing.</li>
+        </ul>
+
+        <h2>Availability</h2>
+        <p>
+          ConverteCaixa is a free and open source tool. No account is required to use it.
+          There are no daily usage limits and no intrusive ads.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          ConverteCaixa<br />
+          Email: <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

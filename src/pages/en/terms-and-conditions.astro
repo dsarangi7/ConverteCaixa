@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Terms and Conditions - ConverteCaixa';
+const description = 'ConverteCaixa Terms and Conditions. Read the terms of use for the tool.';
+const canonical = `${SITE.baseUrl}/en/terms-and-conditions/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Terms and Conditions</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Last updated: September 7, 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing and using ConverteCaixa, you agree to these Terms and Conditions.
+          If you do not agree with any of these terms, do not use the tool.
+        </p>
+
+        <h2>2. Description of Service</h2>
+        <p>
+          ConverteCaixa is a free online tool that allows text conversion between different capitalization styles.
+          All processing occurs locally in the user's browser.
+        </p>
+
+        <h2>3. Acceptable Use</h2>
+        <p>By using ConverteCaixa, you agree to:</p>
+        <ul>
+          <li>Not use the tool for illegal or unauthorized purposes.</li>
+          <li>Not attempt to compromise the security or integrity of the tool.</li>
+          <li>Not use bots, automated scripts, or other means to access the service in excess.</li>
+          <li>Not reproduce, duplicate, or copy the tool for commercial purposes without authorization.</li>
+        </ul>
+
+        <h2>4. Intellectual Property</h2>
+        <p>
+          The source code, design, and content of ConverteCaixa are protected by copyright.
+          You may freely use the tool for personal and commercial purposes,
+          but you may not redistribute, resell, or create derivative works without prior authorization.
+        </p>
+
+        <h2>5. Disclaimer of Warranties</h2>
+        <p>
+          ConverteCaixa is provided "as is", without warranties of any kind, express or implied.
+          We do not guarantee that the tool will be available uninterrupted or that it will be free of errors.
+        </p>
+
+        <h2>6. Limitation of Liability</h2>
+        <p>
+          In no event shall ConverteCaixa be liable for any direct, indirect, incidental, special, or consequential
+          damages arising from the use of or inability to use the tool,
+          including but not limited to loss of data, lost profits, or business interruption.
+        </p>
+
+        <h2>7. Privacy</h2>
+        <p>
+          Text processing is done entirely in the user's browser.
+          No text content is collected or transmitted. For more details, see our{' '}
+          <a href="/en/privacy-policy/">Privacy Policy</a>.
+        </p>
+
+        <h2>8. Availability</h2>
+        <p>
+          ConverteCaixa is a free service and may be discontinued at any time
+          without prior notice. We do not guarantee continuous availability.
+        </p>
+
+        <h2>9. Changes to Terms</h2>
+        <p>
+          We reserve the right to modify these Terms and Conditions at any time.
+          Changes will take effect immediately upon posting on the page.
+          Continued use of the tool after changes constitutes acceptance of the new terms.
+        </p>
+
+        <h2>10. Governing Law</h2>
+        <p>
+          These Terms and Conditions are governed by the laws of the Federative Republic of Brazil.
+          Any dispute shall be submitted to the jurisdiction of Brazilian courts.
+        </p>
+
+        <h2>11. Contact</h2>
+        <p>
+          If you have questions about these Terms and Conditions, please contact us:
+        </p>
+        <p>
+          Email: <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Owner: ConverteCaixa — contact@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Declaração de Acessibilidade - ConverteCaixa';
+const description = 'Declaração de Acessibilidade do ConverteCaixa. Nosso compromisso com a acessibilidade web.';
+const canonical = `${SITE.baseUrl}/pt/declaracao-de-acessibilidade/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Declaração de Acessibilidade</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Última atualização: 7 de setembro de 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>Nosso compromisso</h2>
+        <p>
+          O ConverteCaixa é comprometido em garantir a acessibilidade digital para todas as pessoas,
+          incluindo pessoas com deficiência. Estamos empenhados em seguir as diretrizes de acessibilidade
+          reconhecidas internacionalmente.
+        </p>
+
+        <h2>Padrões de acessibilidade</h2>
+        <p>
+          Nos esforçamos para conformar o ConverteCaixa ao Nível AA das{' '}
+          <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener noreferrer">
+            Diretrizes de Acessibilidade para Conteúdo Web (WCAG) 2.1
+          </a>{' '}
+          do World Wide Web Consortium (W3C).
+        </p>
+
+        <h2>Medidas de acessibilidade implementadas</h2>
+
+        <h3>Estrutura semântica</h3>
+        <ul>
+          <li>Uso de elementos HTML semânticos (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>).</li>
+          <li>Hierarquia de títulos correta (<code>h1</code> a <code>h3</code>).</li>
+          <li>Listas ordenadas e não ordenadas usando <code>&lt;ul&gt;</code> e <code>&lt;ol&gt;</code>.</li>
+        </ul>
+
+        <h3>Navegação por teclado</h3>
+        <ul>
+          <li>Todos os elementos interativos são acessíveis via teclado (Tab, Enter, Espaço).</li>
+          <li>Indicadores de foco visíveis em todos os elementos interativos.</li>
+          <li>Link "Pular para o conteúdo principal" para navegação rápida.</li>
+          <li>Menu mobile acessível via teclado.</li>
+        </ul>
+
+        <h3>Leitores de tela</h3>
+        <ul>
+          <li>Textos alternativos (<code>aria-label</code>, <code>aria-hidden</code>) para elementos visuais.</li>
+          <li>Estados e propriedades ARIA (<code>aria-expanded</code>, <code>aria-current</code>, <code>aria-controls</code>).</li>
+          <li>Regiões landmarks (<code>aria-label</code> para navegação).</li>
+          <li>Conteúdo de status (<code>role="status"</code>, <code>aria-live="polite"</code>).</li>
+        </ul>
+
+        <h3>Contraste de cores</h3>
+        <ul>
+          <li>Texto com contraste mínimo de 4.5:1 em relação ao fundo (nível AA).</li>
+          <li>Texto grande com contraste mínimo de 3:1 em relação ao fundo.</li>
+          <li>Indicadores de foco com contraste adequado.</li>
+        </ul>
+
+        <h3>Conteúdo multimídia</h3>
+        <ul>
+          <li>Nenhum conteúdo de áudio ou vídeo automático é reproduzido.</li>
+          <li>Animações respeitam a preferência <code>prefers-reduced-motion</code>.</li>
+        </ul>
+
+        <h3>Responsividade</h3>
+        <ul>
+          <li>Layout adaptável a diferentes tamanhos de tela.</li>
+          <li>Texto redimensionável até 200% sem perda de conteúdo.</li>
+          <li>Funções disponíveis em dispositivos móveis e tablets.</li>
+        </ul>
+
+        <h2>Compatibilidade com navegadores e tecnologias assistivas</h2>
+        <p>
+          O ConverteCaixa é projetado para funcionar com:
+        </p>
+        <ul>
+          <li>Navegadores modernos (Chrome, Firefox, Safari, Edge).</li>
+          <li>Leitores de tela (NVDA, JAWS, VoiceOver).</li>
+          <li>Navegação por teclado.</li>
+          <li>Zoom do navegador.</li>
+          <li>Modo de alto contraste do sistema operacional.</li>
+        </ul>
+
+        <h2>Limitações conhecidas</h2>
+        <p>
+          Embora nos esforcemos para garantir a acessibilidade completa, pode haver algumas limitações:
+        </p>
+        <ul>
+          <li>A conversão de texto é uma ferramenta baseada em JavaScript; usuários com JavaScript desativado não poderão usá-la.</li>
+          <li>Alguns recursos avançados do conversor podem ter complexidade visual que pode ser desafiadora para alguns usuários.</li>
+        </ul>
+
+        <h2>Feedback e contato</h2>
+        <p>
+          Se você encontrar dificuldades de acessibilidade ao usar o ConverteCaixa ou tiver sugestões para melhorias,
+          por favor entre em contato:
+        </p>
+        <p>
+          E-mail: <a href="mailto:contato@convertecaixa.com">contato@convertecaixa.com</a>
+        </p>
+        <p>
+          Levamos a acessibilidade a sério e responderemos a todas as solicitações de acessibilidade em até 5 dias úteis.
+        </p>
+
+        <h2>Conformidade</h2>
+        <p>
+          Esta declaração de acessibilidade foi atualizada em 7 de setembro de 2026.
+          Estamos em processo de auditoria para garantir conformidade completa com WCAG 2.1 nível AA.
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Responsável: ConverteCaixa — contato@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

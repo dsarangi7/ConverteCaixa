@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Cookie Policy - ConverteCaixa';
+const description = 'ConverteCaixa Cookie Policy. Learn how we use cookies and similar technologies.';
+const canonical = `${SITE.baseUrl}/en/cookie-policy/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="py-8 md:py-12">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Cookie Policy</h1>
+      <p class="font-body-lg text-mute mb-8">
+        Last updated: September 7, 2026
+      </p>
+
+      <div class="prose max-w-3xl">
+        <h2>What are cookies?</h2>
+        <p>
+          Cookies are small text files that are stored on your device when you visit a website.
+          They are widely used to make websites function more efficiently and to provide
+          information to website owners.
+        </p>
+
+        <h2>How ConverteCaixa uses cookies</h2>
+        <p>
+          ConverteCaixa uses only strictly necessary cookies for the website to function.
+          We do not use tracking, advertising, or third-party analytics cookies.
+        </p>
+
+        <h3>Essential cookies</h3>
+        <p>
+          These cookies are indispensable for the basic functioning of the website and cannot be disabled.
+          They include:
+        </p>
+        <ul>
+          <li><strong>Language preferences</strong> — Stores the user's language preference (PT or EN).</li>
+          <li><strong>Theme preferences</strong> — Stores the user's theme preference (light or dark).</li>
+          <li><strong>Session</strong> — Session cookies required for navigation to function.</li>
+        </ul>
+
+        <h3>Functional cookies</h3>
+        <p>
+          We may use cookies to improve user experience, such as remembering the conversion mode
+          last selected. These cookies are stored only in the browser and are not transmitted.
+        </p>
+
+        <h2>Cookies we do NOT use</h2>
+        <p>
+          ConverteCaixa does not use:
+        </p>
+        <ul>
+          <li>Cross-site tracking cookies.</li>
+          <li>Advertising or targeted advertising cookies.</li>
+          <li>Third-party analytics cookies (such as Google Analytics).</li>
+          <li>Social media cookies.</li>
+          <li>Fingerprinting cookies.</li>
+        </ul>
+
+        <h2>Local storage (localStorage)</h2>
+        <p>
+          ConverteCaixa may use the browser's <code>localStorage</code> to store
+          user preferences (such as theme and language). This data remains exclusively on your device
+          and is never transmitted to external servers.
+        </p>
+
+        <h2>Managing cookies</h2>
+        <p>
+          You can control and/or delete cookies as you wish through your browser settings.
+          Most browsers allow you to refuse or accept cookies.
+        </p>
+        <p>
+          For more information on how to manage cookies, please refer to your browser's documentation:
+        </p>
+        <ul>
+          <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Google Chrome</a></li>
+          <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer">Mozilla Firefox</a></li>
+          <li><a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener noreferrer">Apple Safari</a></li>
+          <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer">Microsoft Edge</a></li>
+        </ul>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          This Cookie Policy may be updated periodically. Any changes will be published
+          on this page with the revised update date.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          If you have questions about this Cookie Policy, please contact us:
+        </p>
+        <p>
+          Email: <a href="mailto:contact@convertecaixa.com">contact@convertecaixa.com</a>
+        </p>
+
+        <p class="text-faint text-body-sm mt-8">
+          Owner: ConverteCaixa — contact@convertecaixa.com
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

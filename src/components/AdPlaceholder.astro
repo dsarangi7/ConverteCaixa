@@ -1,0 +1,14 @@
+---
+import type { Locale } from '../lib/config';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'pt-BR' } = Astro.props;
+---
+
+<!-- Ad placeholder for future use -->
+<div class="w-full bg-hairline-soft rounded-md min-h-[90px] flex items-center justify-center text-faint text-body-sm" aria-hidden="true">
+  {lang === 'pt-BR' ? 'Espaço reservado para publicidade' : 'Advertisement space'}
+</div>

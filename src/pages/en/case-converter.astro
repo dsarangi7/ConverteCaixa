@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Converter from '../../components/Converter.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+
+const title = 'Case Converter — Convert Text Case Online Free';
+const description = 'Free online case converter. Transform text to sentence case, UPPERCASE, lowercase, Title Case and more. All processing happens locally in your browser.';
+const canonical = `${SITE.baseUrl}/en/case-converter/`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang={lang}
+>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Case Converter</h1>
+      <p class="font-body-lg text-body mb-6">
+        Convert text case instantly. Paste or type below and select a conversion mode.
+      </p>
+
+      <Converter lang={lang} initialMode="sentence" />
+
+      <div class="mt-8">
+        <AdPlaceholder lang={lang} />
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">How to Use the Case Converter</h2>
+      
+      <div class="prose max-w-3xl">
+        <p>
+          ConverteCaixa is the fastest and most secure case converter online.
+          All processing happens locally in your browser, ensuring your text is never sent to external servers.
+        </p>
+
+        <h3>Conversion Modes</h3>
+        
+        <h4>Sentence Case</h4>
+        <p>
+          Capitalizes only the first letter of each sentence. Ideal for narrative texts and paragraphs.
+        </p>
+        <p>
+          <strong>Example:</strong> "hello world. how are you? fine!" → "Hello world. How are you? Fine!"
+        </p>
+
+        <h4>lowercase</h4>
+        <p>
+          Converts all letters to lowercase. Useful for text normalization.
+        </p>
+        <p>
+          <strong>Example:</strong> "HELLO WORLD" → "hello world"
+        </p>
+
+        <h4>UPPERCASE</h4>
+        <p>
+          Converts all letters to uppercase. Useful for emphasis and headlines.
+        </p>
+        <p>
+          <strong>Example:</strong> "hello world" → "HELLO WORLD"
+        </p>
+
+        <h4>Capitalized Case</h4>
+        <p>
+          Capitalizes the first letter of every word. Ideal for proper names and simple titles.
+        </p>
+        <p>
+          <strong>Example:</strong> "hello world" → "Hello World"
+        </p>
+
+        <h4>Title Case</h4>
+        <p>
+          Capitalizes following title rules, where articles and prepositions remain lowercase.
+          Useful for article titles, book titles, and academic papers.
+        </p>
+        <p>
+          <strong>Example:</strong> "the art of war" → "The Art of War"
+        </p>
+
+        <h4>Inverse Case</h4>
+        <p>
+          Inverts the case of each letter: uppercase becomes lowercase and vice versa.
+        </p>
+        <p>
+          <strong>Example:</strong> "Hello World" → "hELLO wORLD"
+        </p>
+
+        <h4>aLtErNaTiNg CaSe</h4>
+        <p>
+          Alternates between uppercase and lowercase letter by letter.
+        </p>
+        <p>
+          <strong>Example:</strong> "hello world" → "HeLlO wOrLd"
+        </p>
+
+        <h4>tOGGLE cASE</h4>
+        <p>
+          Toggles the case of each individual letter.
+        </p>
+        <p>
+          <strong>Example:</strong> "Hello World" → "hELLO wORLD"
+        </p>
+
+        <h3>Tips for Using the Converter</h3>
+        <ul>
+          <li>Use <code>Ctrl+Z</code> to undo and <code>Ctrl+Y</code> to redo</li>
+          <li>Click "Compare" to see original and converted text side by side</li>
+          <li>Download the result as a TXT file to use in other programs</li>
+          <li>Your draft is automatically saved in the browser</li>
+        </ul>
+
+        <h3>Special Character Support</h3>
+        <p>
+          ConverteCaixa preserves accented characters, symbols, and Unicode characters.
+          Line breaks, paragraphs, and spaces are maintained during conversion.
+        </p>
+
+        <h3>Capitalization Rules</h3>
+        <p>
+          Understanding when to use each case type is important for professional writing:
+        </p>
+        <ul>
+          <li><strong>Sentence case</strong> — Standard for body text and paragraphs</li>
+          <li><strong>Title case</strong> — Used in APA, MLA, Chicago, and AP styles (with slight variations)</li>
+          <li><strong>UPPERCASE</strong> — Reserved for acronyms, initialisms, and emphasis</li>
+          <li><strong>lowercase</strong> — Used for common nouns and after colons in some styles</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
+      
+      <div class="prose max-w-3xl space-y-6">
+        <div>
+          <h3>How do I change case in Microsoft Excel?</h3>
+          <p>
+            In Excel, use the following functions:
+          </p>
+          <ul>
+            <li><code>=UPPER(A1)</code> — Converts to uppercase</li>
+            <li><code>=LOWER(A1)</code> — Converts to lowercase</li>
+            <li><code>=PROPER(A1)</code> — Converts to capitalized</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>How do I change case in Microsoft Word?</h3>
+          <p>
+            In Word, select the text and press <code>Shift+F3</code> to toggle between uppercase, lowercase, and capitalized.
+            For more options, use <strong>Format &gt; Text &gt; Change Case</strong>.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I change case in Google Sheets?</h3>
+          <p>
+            In Google Sheets, use the same functions as Excel:
+          </p>
+          <ul>
+            <li><code>=UPPER(A1)</code></li>
+            <li><code>=LOWER(A1)</code></li>
+            <li><code>=PROPER(A1)</code></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>What is the difference between sentence case and title case?</h3>
+          <p>
+            <strong>Sentence case</strong> capitalizes only the first letter of each sentence. <strong>Title case</strong> capitalizes the first letter of each significant word, keeping articles and prepositions lowercase.
+          </p>
+        </div>
+
+        <div>
+          <h3>How do I fix accidental Caps Lock text?</h3>
+          <p>
+            Paste your ALL CAPS text into the converter, select "lowercase" mode, and the text will be converted to lowercase.
+            You can then use "Capitalized" or "Sentence" mode to fix the capitalization as needed.
+          </p>
+        </div>
+
+        <div>
+          <h3>Can I use ConverteCaixa for long texts?</h3>
+          <p>
+            Yes. ConverteCaixa is optimized for texts of any length, from a single word to entire documents.
+            All processing is done locally, with no server-imposed size limits.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h2 class="font-heading-md text-ink mb-6">See Also</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/uppercase-to-lowercase/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Uppercase to Lowercase
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Convert uppercase text to lowercase
+          </div>
+        </a>
+        <a href="/en/sentence-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Sentence Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Capitalize the first letter of each sentence
+          </div>
+        </a>
+        <a href="/en/title-case-converter/" class="card hover:border-ink transition-colors group">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Title Case Converter
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Apply title capitalization rules
+          </div>
+        </a>
+        <a href="/pt/converter-maiusculas-minusculas/" class="card hover:border-ink transition-colors group" lang="pt-BR">
+          <div class="font-heading-md text-ink group-hover:text-link transition-colors">
+            Converter Maiúsculas e Minúsculas
+          </div>
+          <div class="font-body-sm text-mute mt-1">
+            Versão em português — ConverteCaixa
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
