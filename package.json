@@ -12,6 +12,7 @@
     "dev:status": "astro dev status",
     "dev:logs": "astro dev logs",
     "build": "astro build",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name convertecaixa",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
@@ -20,12 +21,15 @@
     "typecheck": "astro check"
   },
   "dependencies": {
-    "astro": "^7.3.1",
+    "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.1.7",
-    "tailwindcss": "^4.1.7"
+    "astro": "^7.3.1",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "vitest": "^3.2.1"
+    "vitest": "^3.2.1",
+    "wrangler": "^4.0.0"
   },
   "allowScripts": {
     "esbuild": true
