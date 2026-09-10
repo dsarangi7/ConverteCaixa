@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { lang = 'pt-BR', initialMode = 'sentence', pageTitle } = Astro.props;
+const labelLocale = lang === 'pt-BR' ? 'pt' : 'en';
 
 const modes: CaseMode[] = ['sentence', 'lower', 'upper', 'capitalized', 'title', 'inverse', 'alternating', 'toggle'];
 
@@ -71,10 +72,10 @@ const labels = {
           data-mode={mode}
           role="radio"
           aria-checked={mode === initialMode}
-          aria-label={modeLabels[mode][lang]}
-          title={modeDescriptions[mode][lang]}
+          aria-label={modeLabels[mode][labelLocale]}
+          title={modeDescriptions[mode][labelLocale]}
         >
-          {modeLabels[mode][lang]}
+          {modeLabels[mode][labelLocale]}
         </button>
       ))}
     </div>
@@ -86,14 +87,14 @@ const labels = {
     <div class="editor-panel">
       <div class="panel-header">
         <label for="converter-input" class="panel-label">
-        {labels.original[lang]}
+        {labels.original[labelLocale]}
         </label>
         <span class="panel-meta">{lang === 'pt-BR' ? 'Entrada' : 'Input'}</span>
       </div>
       <textarea
         id="converter-input"
         class="textarea min-h-[300px] lg:min-h-[400px] font-body-md"
-        placeholder={labels.inputPlaceholder[lang]}
+        placeholder={labels.inputPlaceholder[labelLocale]}
         aria-describedby="input-stats privacy-notice"
         spellcheck="false"
         autocomplete="off"
@@ -104,15 +105,15 @@ const labels = {
     <div class="editor-panel">
       <div class="panel-header">
         <label for="converter-output" class="panel-label">
-          {labels.converted[lang]}
+          {labels.converted[labelLocale]}
         </label>
         <div class="panel-actions">
           <button
             type="button"
             id="compare-btn"
             class="btn-ghost btn-sm"
-            aria-label={labels.compare[lang]}
-            title={labels.compare[lang]}
+            aria-label={labels.compare[labelLocale]}
+            title={labels.compare[labelLocale]}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5" />
@@ -123,10 +124,10 @@ const labels = {
       <textarea
         id="converter-output"
         class="textarea min-h-[300px] lg:min-h-[400px] font-body-md bg-hairline-soft"
-        placeholder={labels.outputPlaceholder[lang]}
+        placeholder={labels.outputPlaceholder[labelLocale]}
         readonly
         aria-live="polite"
-        aria-label={labels.converted[lang]}
+        aria-label={labels.converted[labelLocale]}
       ></textarea>
     </div>
   </div>
@@ -137,33 +138,33 @@ const labels = {
       type="button"
       id="copy-btn"
       class="btn-primary btn-sm"
-      aria-label={labels.copy[lang]}
+      aria-label={labels.copy[labelLocale]}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
         <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
       </svg>
-      {labels.copy[lang]}
+      {labels.copy[labelLocale]}
     </button>
     
     <button
       type="button"
       id="download-btn"
       class="btn-ghost btn-sm"
-      aria-label={labels.download[lang]}
+      aria-label={labels.download[labelLocale]}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
       </svg>
-      {labels.download[lang]}
+      {labels.download[labelLocale]}
     </button>
     
     <button
       type="button"
       id="undo-btn"
       class="btn-ghost btn-sm"
-      aria-label={labels.undo[lang]}
-      title={`${labels.undo[lang]} (Ctrl+Z)`}
+      aria-label={labels.undo[labelLocale]}
+      title={`${labels.undo[labelLocale]} (Ctrl+Z)`}
       disabled
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -175,8 +176,8 @@ const labels = {
       type="button"
       id="redo-btn"
       class="btn-ghost btn-sm"
-      aria-label={labels.redo[lang]}
-      title={`${labels.redo[lang]} (Ctrl+Y)`}
+      aria-label={labels.redo[labelLocale]}
+      title={`${labels.redo[labelLocale]} (Ctrl+Y)`}
       disabled
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -190,22 +191,22 @@ const labels = {
       type="button"
       id="clear-btn"
       class="btn-ghost btn-sm text-error hover:text-error-deep"
-      aria-label={labels.clear[lang]}
+      aria-label={labels.clear[labelLocale]}
     >
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1.5" aria-hidden="true">
         <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
       </svg>
-      {labels.clear[lang]}
+      {labels.clear[labelLocale]}
     </button>
   </div>
 
   <!-- Stats -->
   <div id="input-stats" class="stats-row" aria-live="polite">
-    <span><span id="stat-chars">0</span> {labels.characters[lang]}</span>
-    <span><span id="stat-chars-no-spaces">0</span> {labels.charactersNoSpaces[lang]}</span>
-    <span><span id="stat-words">0</span> {labels.words[lang]}</span>
-    <span><span id="stat-sentences">0</span> {labels.sentences[lang]}</span>
-    <span><span id="stat-lines">1</span> {labels.lines[lang]}</span>
+    <span><span id="stat-chars">0</span> {labels.characters[labelLocale]}</span>
+    <span><span id="stat-chars-no-spaces">0</span> {labels.charactersNoSpaces[labelLocale]}</span>
+    <span><span id="stat-words">0</span> {labels.words[labelLocale]}</span>
+    <span><span id="stat-sentences">0</span> {labels.sentences[labelLocale]}</span>
+    <span><span id="stat-lines">1</span> {labels.lines[labelLocale]}</span>
   </div>
 
   <!-- Privacy Notice -->
@@ -214,7 +215,7 @@ const labels = {
       <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
       <path d="M7 11V7a5 5 0 0110 0v4" />
     </svg>
-    {labels.privacyNotice[lang]}
+    {labels.privacyNotice[labelLocale]}
   </p>
 </div>
 

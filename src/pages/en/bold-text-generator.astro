@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UnicodeTextGenerator from '../../components/UnicodeTextGenerator.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'en' as const;
+const title = 'Bold Text Generator – Copy and Paste Bold & Italic Text';
+const description = 'Generate copyable Unicode bold, italic, script and monospace text for LinkedIn, Instagram, Facebook, WhatsApp and profile bios. Runs privately in your browser.';
+const canonical = `${SITE.baseUrl}/en/bold-text-generator/`;
+const alternateCanonical = `${SITE.baseUrl}/pt/gerador-de-texto-negrito/`;
+const faqItems = [
+  { question: 'Is this real bold formatting?', answer: 'No. The generator creates Unicode characters that look bold or italic. It does not apply HTML strong, b, em, or true font formatting.' },
+  { question: 'Can I use bold text on LinkedIn and Instagram?', answer: 'Usually, yes. Copy the result and paste it into platforms that support these Unicode characters, but always check how it displays before publishing.' },
+  { question: 'Why do some letters stay unchanged?', answer: 'Unicode does not provide a styled equivalent for every character. Unsupported accents, symbols, emoji, punctuation, and some script letters are preserved rather than deleted.' },
+  { question: 'Is my text sent to a server?', answer: 'No. Conversion and copying happen locally in your browser. Entered text is not uploaded by this tool.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} alternateCanonical={alternateCanonical} lang={lang} faqItems={faqItems}>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Bold Text Generator</h1>
+      <p class="font-body-lg text-body mb-6">Create copyable bold and italic Unicode text for social posts, profiles, and messages.</p>
+      <UnicodeTextGenerator lang={lang} />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6 prose">
+      <h2>Turn ordinary text into Unicode styles</h2>
+      <p>This bold font generator creates characters that look bold, italic, script, or monospace when a platform does not offer normal rich-text formatting. Use it to convert text to bold for LinkedIn, Instagram, Facebook, WhatsApp, and profile bios.</p>
+      <p>These are Unicode characters, not HTML <code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code>, or <code>&lt;em&gt;</code> elements and not true font formatting. Your text stays in the browser while the generator creates each result.</p>
+
+      <h2>How to use the generator</h2>
+      <ol>
+        <li>Type or paste your ordinary text into the input area.</li>
+        <li>Review the eight generated styles and choose the version that fits your message.</li>
+        <li>Copy one style, then paste your bold italic text into the platform or profile you are editing.</li>
+      </ol>
+
+      <h2>How Unicode bold text works</h2>
+      <p>Unicode includes mathematical alphanumeric symbols that resemble bold, italic, script, and monospace letters. The tool replaces supported Latin letters and some digits with those symbols while preserving spaces, punctuation, line breaks, accents, emoji, and any unsupported characters.</p>
+
+      <h2>Practical examples</h2>
+      <ul>
+        <li><strong>LinkedIn:</strong> emphasize a post heading or a short profile section with bold text for LinkedIn.</li>
+        <li><strong>Instagram:</strong> add a readable highlight to a caption or bio without changing the whole message.</li>
+        <li><strong>Facebook:</strong> format a short announcement or community post where rich text is unavailable.</li>
+        <li><strong>WhatsApp:</strong> use selectively in messages when regular formatting is not available or convenient.</li>
+      </ul>
+
+      <h2>Accessibility and compatibility</h2>
+      <p>Some screen readers may pronounce styled Unicode characters poorly, so use them selectively and keep important information in ordinary text. Appearance also varies by operating system, app, font, and browser. Accented characters, symbols, emoji, and unsupported letters remain unchanged instead of being corrupted.</p>
+
+      <h2>Frequently asked questions</h2>
+      {faqItems.map(item => (
+        <div>
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+
+      <h2>Related text tools</h2>
+      <p>For ordinary capitalization, use the <a href="/en/case-converter/">English case converter</a>, <a href="/en/sentence-case-converter/">sentence case converter</a>, or <a href="/en/title-case-converter/">title case converter</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

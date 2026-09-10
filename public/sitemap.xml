@@ -35,6 +35,16 @@
   </url>
 
   <url>
+    <loc>https://convertecaixa.com/pt/gerador-de-texto-negrito/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://convertecaixa.com/pt/gerador-de-texto-negrito/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://convertecaixa.com/en/bold-text-generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://convertecaixa.com/en/bold-text-generator/" />
+  </url>
+
+  <url>
     <loc>https://convertecaixa.com/pt/sobre/</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -113,6 +123,16 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://convertecaixa.com/pt/converter-maiusculas-minusculas/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://convertecaixa.com/en/case-converter/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://convertecaixa.com/en/case-converter/" />
+  </url>
+
+  <url>
+    <loc>https://convertecaixa.com/en/bold-text-generator/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://convertecaixa.com/pt/gerador-de-texto-negrito/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://convertecaixa.com/en/bold-text-generator/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://convertecaixa.com/en/bold-text-generator/" />
   </url>
 
   <url>

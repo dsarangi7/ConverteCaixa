@@ -1,0 +1,175 @@
+---
+import { UNICODE_TEXT_STYLES } from '../lib/unicodeText';
+import type { Locale } from '../lib/config';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const isPortuguese = lang === 'pt-BR';
+const labels = isPortuguese
+  ? {
+      input: 'Digite ou cole seu texto',
+      inputHint: 'Os resultados aparecem enquanto você digita.',
+      clear: 'Limpar',
+      reset: 'Redefinir',
+      copy: 'Copiar',
+      copyAll: 'Copiar todos',
+      copied: 'Texto copiado.',
+      copyAllDone: 'Todos os estilos foram copiados.',
+      empty: 'Digite algum texto para gerar estilos Unicode.',
+      styles: {
+        boldSerif: 'Negrito serifado',
+        italicSerif: 'Itálico serifado',
+        boldItalicSerif: 'Negrito itálico serifado',
+        boldSans: 'Negrito sem serifa',
+        italicSans: 'Itálico sem serifa',
+        boldItalicSans: 'Negrito itálico sem serifa',
+        monospace: 'Monoespaçado',
+        script: 'Manuscrito',
+      },
+    }
+  : {
+      input: 'Type or paste your text',
+      inputHint: 'Results appear as you type.',
+      clear: 'Clear',
+      reset: 'Reset',
+      copy: 'Copy',
+      copyAll: 'Copy all',
+      copied: 'Text copied.',
+      copyAllDone: 'All styles copied.',
+      empty: 'Type some text to generate Unicode styles.',
+      styles: {
+        boldSerif: 'Bold serif',
+        italicSerif: 'Italic serif',
+        boldItalicSerif: 'Bold italic serif',
+        boldSans: 'Bold sans-serif',
+        italicSans: 'Italic sans-serif',
+        boldItalicSans: 'Bold italic sans-serif',
+        monospace: 'Monospace',
+        script: 'Script',
+      },
+    };
+---
+
+<section class="unicode-generator" data-lang={lang}>
+  <div class="unicode-generator-toolbar">
+    <div>
+      <label for="unicode-input" class="panel-label">{labels.input}</label>
+      <p id="unicode-input-hint" class="unicode-input-hint">{labels.inputHint}</p>
+    </div>
+    <div class="unicode-generator-actions">
+      <button type="button" class="btn-ghost" id="unicode-reset">{labels.reset}</button>
+      <button type="button" class="btn-secondary" id="unicode-clear">{labels.clear}</button>
+      <button type="button" class="btn-primary" id="unicode-copy-all">{labels.copyAll}</button>
+    </div>
+  </div>
+
+  <textarea
+    id="unicode-input"
+    class="textarea unicode-input"
+    rows="5"
+    placeholder={isPortuguese ? 'Ex.: destaque uma ideia importante' : 'Example: highlight an important idea'}
+    aria-describedby="unicode-input-hint"
+    spellcheck="false"
+  ></textarea>
+
+  <div class="unicode-output-grid" aria-live="polite">
+    {UNICODE_TEXT_STYLES.map(style => (
+      <article class="unicode-output-card">
+        <div class="unicode-output-header">
+          <h2>{labels.styles[style]}</h2>
+          <button type="button" class="btn-ghost btn-sm unicode-copy" data-style={style} aria-label={`${labels.copy} ${labels.styles[style]}`}>
+            {labels.copy}
+          </button>
+        </div>
+        <textarea
+          class="textarea unicode-output"
+          data-output={style}
+          rows="3"
+          readonly
+          aria-label={labels.styles[style]}
+          placeholder={labels.empty}
+        ></textarea>
+      </article>
+    ))}
+  </div>
+
+  <p id="unicode-copy-status" class="sr-only" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+  import { convertToUnicodeStyle } from '../lib/unicodeText';
+
+  const generator = document.querySelector<HTMLElement>('.unicode-generator');
+  const input = document.getElementById('unicode-input') as HTMLTextAreaElement | null;
+  const status = document.getElementById('unicode-copy-status');
+  const lang = generator?.dataset.lang === 'pt-BR' ? 'pt-BR' : 'en';
+  const messages = lang === 'pt-BR'
+    ? { copied: 'Texto copiado.', copyAll: 'Todos os estilos foram copiados.', empty: 'Digite algum texto primeiro.' }
+    : { copied: 'Text copied.', copyAll: 'All styles copied.', empty: 'Type some text first.' };
+
+  const showStatus = (message: string) => {
+    if (status) status.textContent = message;
+  };
+
+  const writeClipboard = async (text: string) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const fallback = document.createElement('textarea');
+    fallback.value = text;
+    fallback.style.position = 'fixed';
+    fallback.style.opacity = '0';
+    document.body.appendChild(fallback);
+    fallback.select();
+    document.execCommand('copy');
+    fallback.remove();
+  };
+
+  const updateOutputs = () => {
+    const text = input?.value ?? '';
+    generator?.querySelectorAll<HTMLTextAreaElement>('[data-output]').forEach(output => {
+      const style = output.dataset.output as Parameters<typeof convertToUnicodeStyle>[1];
+      output.value = convertToUnicodeStyle(text, style);
+    });
+  };
+
+  input?.addEventListener('input', updateOutputs);
+
+  generator?.querySelectorAll<HTMLButtonElement>('.unicode-copy').forEach(button => {
+    button.addEventListener('click', async () => {
+      const output = generator.querySelector<HTMLTextAreaElement>(`[data-output="${button.dataset.style}"]`);
+      if (!output?.value) {
+        showStatus(messages.empty);
+        return;
+      }
+      await writeClipboard(output.value);
+      showStatus(messages.copied);
+    });
+  });
+
+  document.getElementById('unicode-copy-all')?.addEventListener('click', async () => {
+    const outputs = Array.from(generator?.querySelectorAll<HTMLTextAreaElement>('[data-output]') ?? [])
+      .map(output => output.value)
+      .filter(Boolean);
+    if (!outputs.length) {
+      showStatus(messages.empty);
+      return;
+    }
+    await writeClipboard(outputs.join('\n\n'));
+    showStatus(messages.copyAll);
+  });
+
+  const reset = () => {
+    if (input) input.value = '';
+    updateOutputs();
+    input?.focus();
+    showStatus('');
+  };
+
+  document.getElementById('unicode-clear')?.addEventListener('click', reset);
+  document.getElementById('unicode-reset')?.addEventListener('click', reset);
+</script>

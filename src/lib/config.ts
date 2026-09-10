@@ -30,12 +30,14 @@ export const NAV_ITEMS = {
   'pt-BR': [
     { label: 'Início', href: '/pt/' },
     { label: 'Converter', href: '/pt/converter-maiusculas-minusculas/' },
+    { label: 'Texto em Negrito', href: '/pt/gerador-de-texto-negrito/' },
     { label: 'Privacidade', href: '/pt/politica-de-privacidade/' },
     { label: 'Contato', href: '/pt/contato/' },
   ],
   en: [
     { label: 'Home', href: '/en/' },
     { label: 'Converter', href: '/en/case-converter/' },
+    { label: 'Bold Text', href: '/en/bold-text-generator/' },
     { label: 'Privacy', href: '/en/privacy-policy/' },
     { label: 'Contact', href: '/en/contact/' },
   ],
@@ -45,6 +47,7 @@ export const FOOTER_LINKS = {
   'pt-BR': {
     tools: [
       { label: 'Converter Maiúsculas e Minúsculas', href: '/pt/converter-maiusculas-minusculas/' },
+      { label: 'Gerador de Texto em Negrito', href: '/pt/gerador-de-texto-negrito/' },
     ],
     legal: [
       { label: 'Sobre Nós', href: '/pt/sobre/' },
@@ -61,6 +64,7 @@ export const FOOTER_LINKS = {
       { label: 'Uppercase to Lowercase', href: '/en/uppercase-to-lowercase/' },
       { label: 'Sentence Case Converter', href: '/en/sentence-case-converter/' },
       { label: 'Title Case Converter', href: '/en/title-case-converter/' },
+      { label: 'Bold Text Generator', href: '/en/bold-text-generator/' },
     ],
     legal: [
       { label: 'About', href: '/en/about/' },

@@ -9,6 +9,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   lang?: Locale;
+  alternateCanonical?: string;
   noindex?: boolean;
   faqItems?: Array<{ question: string; answer: string }>;
 }
@@ -19,6 +20,7 @@ const {
   canonical = SITE.baseUrl,
   ogImage = `${SITE.baseUrl}/og-image.png`,
   lang = 'pt-BR' as Locale,
+  alternateCanonical,
   noindex = false,
   faqItems = [],
 } = Astro.props;
@@ -28,6 +30,7 @@ const navItems = NAV_ITEMS[lang];
 const footerLinks = FOOTER_LINKS[lang];
 const alternateLocale = lang === 'pt-BR' ? 'en' : 'pt-BR';
 const alternatePath = lang === 'pt-BR' ? '/en/' : '/pt/';
+const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
 ---
 
 <!DOCTYPE html>
@@ -46,6 +49,7 @@ const alternatePath = lang === 'pt-BR' ? '/en/' : '/pt/';
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="keywords" content={meta.keywords} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -55,7 +59,7 @@ const alternatePath = lang === 'pt-BR' ? '/en/' : '/pt/';
   
   <!-- hreflang -->
   <link rel="alternate" hreflang={lang} href={canonical} />
-  <link rel="alternate" hreflang={alternateLocale} href={`${SITE.baseUrl}${alternatePath}`} />
+  <link rel="alternate" hreflang={alternateLocale} href={alternateUrl} />
   <link rel="alternate" hreflang="x-default" href={SITE.baseUrl} />
   
   <!-- Open Graph -->

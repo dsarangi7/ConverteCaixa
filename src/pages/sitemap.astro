@@ -1,9 +1,39 @@
 ---
-// Sitemap page - redirects to sitemap.xml
-return new Response(null, {
-  status: 301,
-  headers: {
-    'Location': '/sitemap.xml',
-  },
-});
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../lib/config';
+
+const title = 'HTML Sitemap | ConverteCaixa';
+const description = 'Browse all ConverteCaixa text conversion tools and information pages.';
+const canonical = `${SITE.baseUrl}/sitemap/`;
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} lang="en">
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-6">HTML Sitemap</h1>
+      <div class="prose max-w-3xl">
+        <h2>Text tools</h2>
+        <ul>
+          <li><a href="/en/bold-text-generator/">Bold Text Generator</a></li>
+          <li><a href="/pt/gerador-de-texto-negrito/" lang="pt-BR">Gerador de Texto em Negrito</a></li>
+          <li><a href="/en/case-converter/">Case Converter</a></li>
+          <li><a href="/pt/converter-maiusculas-minusculas/" lang="pt-BR">Converter Maiúsculas e Minúsculas</a></li>
+          <li><a href="/en/sentence-case-converter/">Sentence Case Converter</a></li>
+          <li><a href="/en/title-case-converter/">Title Case Converter</a></li>
+          <li><a href="/en/uppercase-to-lowercase/">Uppercase to Lowercase Converter</a></li>
+        </ul>
+
+        <h2>Information</h2>
+        <ul>
+          <li><a href="/en/">English home page</a></li>
+          <li><a href="/pt/" lang="pt-BR">Página inicial em português</a></li>
+          <li><a href="/en/about/">About ConverteCaixa</a></li>
+          <li><a href="/en/contact/">Contact</a></li>
+          <li><a href="/en/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/en/accessibility-statement/">Accessibility Statement</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
 ---

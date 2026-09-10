@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import UnicodeTextGenerator from '../../components/UnicodeTextGenerator.astro';
+import { SITE } from '../../lib/config';
+
+const lang = 'pt-BR' as const;
+const title = 'Gerador de Texto em Negrito – Copiar e Colar';
+const description = 'Gere texto Unicode em negrito, itálico, manuscrito e monoespaçado para copiar e colar no LinkedIn, Instagram, Facebook, WhatsApp e bios.';
+const canonical = `${SITE.baseUrl}/pt/gerador-de-texto-negrito/`;
+const alternateCanonical = `${SITE.baseUrl}/en/bold-text-generator/`;
+const faqItems = [
+  { question: 'Este gerador aplica negrito de verdade?', answer: 'Não. Ele cria caracteres Unicode que parecem negrito ou itálico. Não aplica as tags HTML strong, b ou em nem uma formatação real de fonte.' },
+  { question: 'Posso usar o texto em negrito no Instagram e no LinkedIn?', answer: 'Na maioria das vezes, sim. Copie o resultado e cole na plataforma, conferindo antes como ele aparece para outras pessoas.' },
+  { question: 'Por que algumas letras ficam normais?', answer: 'Nem todo caractere possui uma versão Unicode estilizada. Acentos, símbolos, emojis, pontuação e algumas letras manuscritas sem equivalente são preservados.' },
+  { question: 'Meu texto é enviado para um servidor?', answer: 'Não. A conversão e a cópia acontecem localmente no navegador. O texto digitado não é enviado por esta ferramenta.' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={canonical} alternateCanonical={alternateCanonical} lang={lang} faqItems={faqItems}>
+  <section class="tool-hero">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <h1 class="font-heading-lg text-ink mb-2">Gerador de Texto em Negrito</h1>
+      <p class="font-body-lg text-body mb-6">Crie letras em negrito e itálico para copiar e colar em redes sociais, perfis e mensagens.</p>
+      <UnicodeTextGenerator lang={lang} />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="max-w-[1200px] mx-auto px-6 prose">
+      <h2>Converta texto comum em estilos Unicode</h2>
+      <p>Este gerador ajuda a converter texto para negrito quando uma plataforma não oferece formatação rica. Gere letras em negrito, texto em itálico, manuscrito e monoespaçado para usar no Instagram, LinkedIn, Facebook, WhatsApp e bios.</p>
+      <p>Os resultados são caracteres Unicode, não as tags HTML <code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code> ou <code>&lt;em&gt;</code> e não representam uma formatação real de fonte. O processamento permanece no navegador.</p>
+
+      <h2>Como usar o gerador</h2>
+      <ol>
+        <li>Digite ou cole o texto comum na área de entrada.</li>
+        <li>Confira os oito estilos gerados e escolha o resultado desejado.</li>
+        <li>Clique em copiar e cole o texto onde quiser usar o negrito para Instagram, LinkedIn ou outras plataformas.</li>
+      </ol>
+
+      <h2>Como funciona o negrito Unicode</h2>
+      <p>O Unicode possui símbolos alfanuméricos matemáticos que se parecem com letras em negrito, itálico, manuscrito e monoespaçado. O gerador troca as letras latinas e alguns números compatíveis, preservando espaços, pontuação, quebras de linha, acentos, emojis e caracteres sem equivalente.</p>
+
+      <h2>Exemplos práticos</h2>
+      <ul>
+        <li><strong>LinkedIn:</strong> destaque o título de uma publicação ou uma parte curta do perfil.</li>
+        <li><strong>Instagram:</strong> crie um destaque visual em uma legenda ou bio sem transformar todo o texto.</li>
+        <li><strong>Facebook:</strong> realce um aviso curto em uma publicação ou grupo.</li>
+        <li><strong>WhatsApp:</strong> use os estilos com moderação em mensagens importantes.</li>
+      </ul>
+
+      <h2>Acessibilidade e compatibilidade</h2>
+      <p>Alguns leitores de tela podem pronunciar caracteres Unicode estilizados de forma inadequada. Por isso, use-os seletivamente e mantenha informações importantes em texto comum. A aparência pode variar conforme o sistema, aplicativo, fonte e navegador. Caracteres acentuados, símbolos, emojis e letras sem suporte permanecem intactos.</p>
+
+      <h2>Perguntas frequentes</h2>
+      {faqItems.map(item => (
+        <div>
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+
+      <h2>Ferramentas relacionadas</h2>
+      <p>Para capitalização comum, use o <a href="/pt/converter-maiusculas-minusculas/">conversor de maiúsculas e minúsculas</a> ou o <a href="/en/case-converter/" lang="en">conversor de texto em inglês</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
