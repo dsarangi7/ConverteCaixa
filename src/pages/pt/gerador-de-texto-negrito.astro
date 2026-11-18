@@ -7,7 +7,6 @@ const lang = 'pt-BR' as const;
 const title = 'Gerador de Texto em Negrito – Copiar e Colar';
 const description = 'Gere texto Unicode em negrito, itálico, manuscrito e monoespaçado para copiar e colar no LinkedIn, Instagram, Facebook, WhatsApp e bios.';
 const canonical = `${SITE.baseUrl}/pt/gerador-de-texto-negrito/`;
-const alternateCanonical = `${SITE.baseUrl}/en/bold-text-generator/`;
 const faqItems = [
   { question: 'Este gerador aplica negrito de verdade?', answer: 'Não. Ele cria caracteres Unicode que parecem negrito ou itálico. Não aplica as tags HTML strong, b ou em nem uma formatação real de fonte.' },
   { question: 'Posso usar o texto em negrito no Instagram e no LinkedIn?', answer: 'Na maioria das vezes, sim. Copie o resultado e cole na plataforma, conferindo antes como ele aparece para outras pessoas.' },
@@ -16,7 +15,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical} alternateCanonical={alternateCanonical} lang={lang} faqItems={faqItems}>
+<BaseLayout title={title} description={description} canonical={canonical} lang={lang} faqItems={faqItems}>
   <section class="tool-hero">
     <div class="max-w-[1200px] mx-auto px-6">
       <h1 class="font-heading-lg text-ink mb-2">Gerador de Texto em Negrito</h1>

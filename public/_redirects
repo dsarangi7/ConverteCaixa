@@ -1,0 +1,28 @@
+# Permanent redirects for Cloudflare Pages. Redirects run before static files.
+# The site root is not a page: it permanently sends visitors to the Portuguese homepage.
+/ /pt/ 301
+/index.html /pt/ 301
+
+# One URL style: trailing slash. Slashless paths redirect to that canonical.
+/pt /pt/ 301
+/pt/converter-maiusculas-minusculas /pt/converter-maiusculas-minusculas/ 301
+/pt/gerador-de-texto-negrito /pt/gerador-de-texto-negrito/ 301
+/pt/sobre /pt/sobre/ 301
+/pt/contato /pt/contato/ 301
+/pt/politica-de-privacidade /pt/politica-de-privacidade/ 301
+/pt/termos-de-uso /pt/termos-de-uso/ 301
+/pt/politica-de-cookies /pt/politica-de-cookies/ 301
+/pt/declaracao-de-acessibilidade /pt/declaracao-de-acessibilidade/ 301
+/en /en/ 301
+/en/case-converter /en/case-converter/ 301
+/en/bold-text-generator /en/bold-text-generator/ 301
+/en/uppercase-to-lowercase /en/uppercase-to-lowercase/ 301
+/en/sentence-case-converter /en/sentence-case-converter/ 301
+/en/title-case-converter /en/title-case-converter/ 301
+/en/about /en/about/ 301
+/en/contact /en/contact/ 301
+/en/privacy-policy /en/privacy-policy/ 301
+/en/terms-and-conditions /en/terms-and-conditions/ 301
+/en/cookie-policy /en/cookie-policy/ 301
+/en/accessibility-statement /en/accessibility-statement/ 301
+/sitemap /sitemap/ 301
