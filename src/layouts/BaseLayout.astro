@@ -1,6 +1,7 @@
 ---
 import { SITE, META, NAV_ITEMS, FOOTER_LINKS } from '../lib/config';
 import type { Locale } from '../lib/config';
+import { absoluteUrl, findRoute, hreflangLinks, localeSwitchHrefs, withTrailingSlash } from '../lib/seo-routes';
 import '../styles/global.css';
 
 interface Props {
@@ -9,7 +10,6 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   lang?: Locale;
-  alternateCanonical?: string;
   noindex?: boolean;
   faqItems?: Array<{ question: string; answer: string }>;
 }
@@ -17,20 +17,24 @@ interface Props {
 const {
   title = META['pt-BR'].title,
   description = META['pt-BR'].description,
-  canonical = SITE.baseUrl,
+  canonical: canonicalProp,
   ogImage = `${SITE.baseUrl}/og-image.png`,
   lang = 'pt-BR' as Locale,
-  alternateCanonical,
   noindex = false,
   faqItems = [],
 } = Astro.props;
 
+const route = findRoute(Astro.url.pathname);
+const canonical = canonicalProp ?? (route ? absoluteUrl(route.path) : absoluteUrl('/pt/'));
+const alternates = !noindex && route ? hreflangLinks(route) : [];
+const { pt: portugueseHref, en: englishHref } = localeSwitchHrefs(Astro.url.pathname);
+const currentPath = withTrailingSlash(Astro.url.pathname);
+const isCurrent = (href: string) => withTrailingSlash(href) === currentPath;
+
 const meta = META[lang];
 const navItems = NAV_ITEMS[lang];
 const footerLinks = FOOTER_LINKS[lang];
-const alternateLocale = lang === 'pt-BR' ? 'en' : 'pt-BR';
-const alternatePath = lang === 'pt-BR' ? '/en/' : '/pt/';
-const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
+const homeUrl = absoluteUrl('/pt/');
 ---
 
 <!DOCTYPE html>
@@ -54,13 +58,10 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
   <meta name="keywords" content={meta.keywords} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   
-  <!-- Canonical -->
-  <link rel="canonical" href={canonical} />
-  
-  <!-- hreflang -->
-  <link rel="alternate" hreflang={lang} href={canonical} />
-  <link rel="alternate" hreflang={alternateLocale} href={alternateUrl} />
-  <link rel="alternate" hreflang="x-default" href={SITE.baseUrl} />
+  {!noindex && <link rel="canonical" href={canonical} />}
+  {alternates.map((link) => (
+    <link rel="alternate" hreflang={link.hreflang} href={link.href} />
+  ))}
   
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -99,19 +100,19 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": SITE.name,
-    "url": SITE.baseUrl,
+    "url": homeUrl,
   })} />
   
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": SITE.name,
-    "url": SITE.baseUrl,
+    "url": homeUrl,
     "logo": `${SITE.baseUrl}/android-chrome-512x512.png`,
     "sameAs": []
   })} />
 
-  <script type="application/ld+json" set:html={JSON.stringify({
+  {!noindex && <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": lang === 'pt-BR' ? 'ConverteCaixa' : 'Case Converter by ConverteCaixa',
@@ -124,7 +125,7 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
       ? 'Maiúsculas, minúsculas, frase, título, capitalizado, inverso e alternado'
       : 'Uppercase, lowercase, sentence case, title case, capitalized, inverse and alternating case',
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  })} />
+  })} />}
 
   {faqItems.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
@@ -165,7 +166,7 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
               <a
                 href={item.href}
                 class="nav-link"
-                aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+                aria-current={isCurrent(item.href) ? 'page' : undefined}
               >
                 {item.label}
               </a>
@@ -176,7 +177,7 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
         <!-- Language Switcher -->
         <div class="locale-switcher">
           <a
-            href="/pt/"
+            href={portugueseHref}
             class={`locale-option ${lang === 'pt-BR' ? 'is-active' : ''}`}
             aria-label="Português"
             lang="pt-BR"
@@ -184,7 +185,7 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
             PT
           </a>
           <a
-            href="/en/"
+            href={englishHref}
             class={`locale-option ${lang === 'en' ? 'is-active' : ''}`}
             aria-label="English"
             lang="en"
@@ -233,7 +234,7 @@ const alternateUrl = alternateCanonical ?? `${SITE.baseUrl}${alternatePath}`;
             <a
               href={item.href}
               class="mobile-menu-link"
-              aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
+              aria-current={isCurrent(item.href) ? 'page' : undefined}
             >
               {item.label}
             </a>

@@ -7,7 +7,6 @@ const lang = 'en' as const;
 const title = 'Bold Text Generator – Copy and Paste Bold & Italic Text';
 const description = 'Generate copyable Unicode bold, italic, script and monospace text for LinkedIn, Instagram, Facebook, WhatsApp and profile bios. Runs privately in your browser.';
 const canonical = `${SITE.baseUrl}/en/bold-text-generator/`;
-const alternateCanonical = `${SITE.baseUrl}/pt/gerador-de-texto-negrito/`;
 const faqItems = [
   { question: 'Is this real bold formatting?', answer: 'No. The generator creates Unicode characters that look bold or italic. It does not apply HTML strong, b, em, or true font formatting.' },
   { question: 'Can I use bold text on LinkedIn and Instagram?', answer: 'Usually, yes. Copy the result and paste it into platforms that support these Unicode characters, but always check how it displays before publishing.' },
@@ -16,7 +15,7 @@ const faqItems = [
 ];
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical} alternateCanonical={alternateCanonical} lang={lang} faqItems={faqItems}>
+<BaseLayout title={title} description={description} canonical={canonical} lang={lang} faqItems={faqItems}>
   <section class="tool-hero">
     <div class="max-w-[1200px] mx-auto px-6">
       <h1 class="font-heading-lg text-ink mb-2">Bold Text Generator</h1>
