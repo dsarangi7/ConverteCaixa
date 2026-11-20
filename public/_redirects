@@ -26,3 +26,7 @@
 /en/cookie-policy /en/cookie-policy/ 301
 /en/accessibility-statement /en/accessibility-statement/ 301
 /sitemap /sitemap/ 301
+
+# Retired URLs. Both slash forms go straight to the live canonical, with no extra hop.
+/en/font-text-generator /en/bold-text-generator/ 301
+/en/font-text-generator/ /en/bold-text-generator/ 301

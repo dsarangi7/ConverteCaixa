@@ -7,6 +7,7 @@ import {
   SEO_ROUTES,
   absoluteUrl,
   hreflangLinks,
+  LEGACY_REDIRECTS,
   renderRedirects,
   renderSitemap,
 } from './seo-routes';
@@ -71,12 +72,13 @@ describe('indexable routes', () => {
       .filter((line) => line && !line.startsWith('#'))
       .map((line) => line.split(' '));
 
-    expect(rules.length).toBe(SEO_ROUTES.length + 2);
+    expect(rules.length).toBe(SEO_ROUTES.length + 2 + LEGACY_REDIRECTS.length);
+    const legacySources = new Set(LEGACY_REDIRECTS.map((rule) => rule.from));
     for (const [source, destination, code] of rules) {
       expect(code).toBe('301');
       expect(destination.endsWith('/')).toBe(true);
       expect(SEO_ROUTES.some((route) => route.path === destination)).toBe(true);
-      if (source !== '/' && source !== '/index.html') {
+      if (source !== '/' && source !== '/index.html' && !legacySources.has(source)) {
         expect(source.endsWith('/')).toBe(false);
       }
     }
@@ -141,6 +143,29 @@ describe('indexable routes', () => {
         expect(around, file).toContain('<!--email_off-->');
         expect(around, file).toContain('<!--/email_off-->');
       }
+    }
+  });
+
+  it('redirects the retired English font-text-generator URL to the bold text generator', () => {
+    const redirects = renderRedirects();
+    expect(redirects).toContain('/en/font-text-generator /en/bold-text-generator/ 301');
+    expect(redirects).toContain('/en/font-text-generator/ /en/bold-text-generator/ 301');
+    expect(renderSitemap()).not.toContain('font-text-generator');
+    expect(SEO_ROUTES.some((route) => route.path.includes('font-text-generator'))).toBe(false);
+
+    const linked = [
+      ...NAV_ITEMS['pt-BR'].map((item) => item.href),
+      ...NAV_ITEMS.en.map((item) => item.href),
+      ...FOOTER_LINKS['pt-BR'].tools.map((item) => item.href),
+      ...FOOTER_LINKS['pt-BR'].legal.map((item) => item.href),
+      ...FOOTER_LINKS.en.tools.map((item) => item.href),
+      ...FOOTER_LINKS.en.legal.map((item) => item.href),
+    ];
+    for (const href of linked) {
+      expect(href).not.toContain('font-text-generator');
+    }
+    for (const [file, source] of Object.entries(pageSources)) {
+      expect(source, file).not.toContain('font-text-generator');
     }
   });
 
