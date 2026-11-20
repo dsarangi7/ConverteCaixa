@@ -116,4 +116,38 @@ describe('indexable routes', () => {
 
     expect(canonicals.sort()).toEqual(SEO_ROUTES.map((route) => route.path).sort());
   });
+
+  it('gives the HTML sitemap an inbound link from both footers', () => {
+    expect(FOOTER_LINKS.en.legal.some((link) => link.href === '/sitemap/')).toBe(true);
+    expect(FOOTER_LINKS['pt-BR'].legal.some((link) => link.href === '/sitemap/')).toBe(true);
+  });
+
+  it('keeps indexable meta descriptions in the snippet range', () => {
+    for (const [file, source] of Object.entries(pageSources)) {
+      if (file.endsWith('/404.astro')) continue;
+      const match = source.match(/const description = '([^']*)'/);
+      expect(match, file).not.toBeNull();
+      const length = match?.[1].length ?? 0;
+      expect(length, `${file} is ${length} characters`).toBeGreaterThanOrEqual(100);
+      expect(length, `${file} is ${length} characters`).toBeLessThanOrEqual(160);
+    }
+  });
+
+  it('opts mailto links out of email obfuscation that 404s for crawlers', () => {
+    for (const [file, source] of Object.entries(pageSources)) {
+      for (const match of source.matchAll(/<a href="mailto:[^"]+">[^<]+<\/a>/g)) {
+        const start = match.index ?? 0;
+        const around = source.slice(Math.max(0, start - 24), start + match[0].length + 24);
+        expect(around, file).toContain('<!--email_off-->');
+        expect(around, file).toContain('<!--/email_off-->');
+      }
+    }
+  });
+
+  it('sends contact FAQ links to a homepage section', () => {
+    expect(pageSources['../pages/en/index.astro']).toContain('id="faq"');
+    expect(pageSources['../pages/pt/index.astro']).toContain('id="faq"');
+    expect(pageSources['../pages/en/contact.astro']).toContain('href="/en/#faq"');
+    expect(pageSources['../pages/pt/contato.astro']).toContain('href="/pt/#faq"');
+  });
 });
