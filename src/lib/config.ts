@@ -56,6 +56,7 @@ export const FOOTER_LINKS = {
       { label: 'Cookies', href: '/pt/politica-de-cookies/' },
       { label: 'Acessibilidade', href: '/pt/declaracao-de-acessibilidade/' },
       { label: 'Contato', href: '/pt/contato/' },
+      { label: 'Mapa do site', href: '/sitemap/' },
     ],
   },
   en: {
@@ -73,6 +74,7 @@ export const FOOTER_LINKS = {
       { label: 'Cookie Policy', href: '/en/cookie-policy/' },
       { label: 'Accessibility', href: '/en/accessibility-statement/' },
       { label: 'Contact', href: '/en/contact/' },
+      { label: 'Sitemap', href: '/sitemap/' },
     ],
   },
 } as const;
