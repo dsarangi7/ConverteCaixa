@@ -54,6 +54,15 @@ const ROUTE_DEFINITIONS: RouteDefinition[] = [
   { path: '/sitemap/', lang: 'en', priority: '0.2' },
 ];
 
+/**
+ * Retired URLs that Google still requests. They are not pages and must not be
+ * indexed. Each slash form redirects once to the live canonical tool.
+ */
+export const LEGACY_REDIRECTS: ReadonlyArray<{ from: string; to: string }> = [
+  { from: '/en/font-text-generator', to: '/en/bold-text-generator/' },
+  { from: '/en/font-text-generator/', to: '/en/bold-text-generator/' },
+];
+
 export const SEO_ROUTES: SeoRoute[] = ROUTE_DEFINITIONS.map((route) => ({
   ...route,
   changefreq: 'monthly' as const,
@@ -161,6 +170,14 @@ export function renderRedirects(routes: SeoRoute[] = SEO_ROUTES): string {
     lines.push(`${bare} ${route.path} 301`);
   }
 
+  if (LEGACY_REDIRECTS.length > 0) {
+    lines.push('');
+    lines.push('# Retired URLs. Both slash forms go straight to the live canonical, with no extra hop.');
+    for (const redirect of LEGACY_REDIRECTS) {
+      lines.push(`${redirect.from} ${redirect.to} 301`);
+    }
+  }
+
   lines.push('');
   return lines.join('\n');
 }
@@ -186,4 +203,23 @@ export function assertSeoRoutes(routes: SeoRoute[] = SEO_ROUTES): void {
   }
 }
 
+function assertLegacyRedirects(routes: SeoRoute[] = SEO_ROUTES): void {
+  const paths = new Set(routes.map((route) => route.path));
+  const sources = new Set<string>();
+
+  for (const redirect of LEGACY_REDIRECTS) {
+    if (!redirect.from.startsWith('/') || redirect.from.includes('//') || sources.has(redirect.from)) {
+      throw new Error(`Invalid legacy redirect source: ${redirect.from}`);
+    }
+    if (paths.has(redirect.from)) {
+      throw new Error(`Legacy redirect shadows an indexable URL: ${redirect.from}`);
+    }
+    if (!paths.has(redirect.to)) {
+      throw new Error(`Legacy redirect must land on an indexable URL: ${redirect.to}`);
+    }
+    sources.add(redirect.from);
+  }
+}
+
 assertSeoRoutes();
+assertLegacyRedirects();

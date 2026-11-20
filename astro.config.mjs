@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import { DEFAULT_LOCALE_PATH, findRoute } from './src/lib/seo-routes.ts';
+import { DEFAULT_LOCALE_PATH, findRoute, LEGACY_REDIRECTS } from './src/lib/seo-routes.ts';
 
 /**
  * @param {{ url?: string }} req
@@ -11,6 +11,14 @@ import { DEFAULT_LOCALE_PATH, findRoute } from './src/lib/seo-routes.ts';
 function canonicalRedirect(req, res, next) {
   const url = new URL(req.url ?? '/', 'http://localhost');
   const { pathname, search } = url;
+
+  const legacy = LEGACY_REDIRECTS.find((rule) => rule.from === pathname);
+  if (legacy) {
+    res.statusCode = 301;
+    res.setHeader('Location', `${legacy.to}${search}`);
+    res.end();
+    return;
+  }
 
   if (pathname === '/' || pathname === '/index.html') {
     res.statusCode = 301;
