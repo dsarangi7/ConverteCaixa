@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Converter from '../../components/Converter.astro';
 import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { portugueseCaseConverterFaq } from '../../lib/case-converter-faq';
+import { faqPointParts } from '../../lib/faq-schema';
 import { SITE } from '../../lib/config';
 
 const lang = 'pt-BR' as const;
@@ -16,6 +18,7 @@ const canonical = `${SITE.baseUrl}/pt/converter-maiusculas-minusculas/`;
   description={description}
   canonical={canonical}
   lang={lang}
+  faqItems={portugueseCaseConverterFaq}
 >
   <section class="tool-hero">
     <div class="max-w-[1200px] mx-auto px-6">
@@ -131,52 +134,25 @@ const canonical = `${SITE.baseUrl}/pt/converter-maiusculas-minusculas/`;
       <h2 class="font-heading-md text-ink mb-6">Perguntas frequentes</h2>
       
       <div class="prose max-w-3xl space-y-6">
-        <div>
-          <h3>Como converter maiúsculas e minúsculas no Microsoft Excel?</h3>
-          <p>
-            No Excel, use as funções:
-          </p>
-          <ul>
-            <li><code>=UPPER(A1)</code> — Converte para maiúsculas</li>
-            <li><code>=LOWER(A1)</code> — Converte para minúsculas</li>
-            <li><code>=PROPER(A1)</code> — Converte para capitalizado</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Como converter maiúsculas e minúsculas no Microsoft Word?</h3>
-          <p>
-            No Word, selecione o texto e pressione <code>Shift+F3</code> para alternar entre maiúsculas, minúsculas e capitalizado.
-            Para mais opções, use <strong>Formatar &gt; Texto &gt; Caixa Alta/Baixa</strong>.
-          </p>
-        </div>
-
-        <div>
-          <h3>Como converter maiúsculas e minúsculas no Google Sheets?</h3>
-          <p>
-            No Google Sheets, use as mesmas funções do Excel:
-          </p>
-          <ul>
-            <li><code>=UPPER(A1)</code></li>
-            <li><code>=LOWER(A1)</code></li>
-            <li><code>=PROPER(A1)</code></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Qual a diferença entre frase e título?</h3>
-          <p>
-            <strong>Frase</strong> capitaliza apenas a primeira letra de cada frase. <strong>Título</strong> capitaliza a primeira letra de cada palavra significativa, mantendo artigos e preposições em minúsculas.
-          </p>
-        </div>
-
-        <div>
-          <h3>Posso usar o ConverteCaixa para textos longos?</h3>
-          <p>
-            Sim. O ConverteCaixa é otimizado para textos de qualquer tamanho, desde uma palavra até documentos inteiros.
-            Todo o processamento é feito localmente, sem limites de tamanho impostos pelo servidor.
-          </p>
-        </div>
+        {portugueseCaseConverterFaq.map((item) => (
+          <div>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+            {item.points && (
+              <ul>
+                {item.points.map((point) => {
+                  const { formula, detail } = faqPointParts(point);
+                  return (
+                    <li>
+                      <code>{formula}</code>
+                      {detail ? ` — ${detail}` : null}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </section>

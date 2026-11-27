@@ -1,6 +1,7 @@
 ---
 import { SITE, META, NAV_ITEMS, FOOTER_LINKS } from '../lib/config';
 import type { Locale } from '../lib/config';
+import { faqPageJsonLd, type FaqItem } from '../lib/faq-schema';
 import { absoluteUrl, findRoute, hreflangLinks, localeSwitchHrefs, withTrailingSlash } from '../lib/seo-routes';
 import '../styles/global.css';
 
@@ -11,7 +12,7 @@ interface Props {
   ogImage?: string;
   lang?: Locale;
   noindex?: boolean;
-  faqItems?: Array<{ question: string; answer: string }>;
+  faqItems?: readonly FaqItem[];
 }
 
 const {
@@ -127,15 +128,7 @@ const homeUrl = absoluteUrl('/pt/');
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   })} />}
 
-  {faqItems.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": { "@type": "Answer", "text": item.answer },
-    })),
-  })} />}
+  {faqItems.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd(faqItems))} />}
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHHB0E183M" is:inline></script>

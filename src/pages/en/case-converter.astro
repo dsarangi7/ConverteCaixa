@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Converter from '../../components/Converter.astro';
 import AdPlaceholder from '../../components/AdPlaceholder.astro';
+import { englishCaseConverterFaq } from '../../lib/case-converter-faq';
+import { faqPointParts } from '../../lib/faq-schema';
 import { SITE } from '../../lib/config';
 
 const lang = 'en' as const;
@@ -16,6 +18,7 @@ const canonical = `${SITE.baseUrl}/en/case-converter/`;
   description={description}
   canonical={canonical}
   lang={lang}
+  faqItems={englishCaseConverterFaq}
 >
   <section class="tool-hero">
     <div class="max-w-[1200px] mx-auto px-6">
@@ -142,60 +145,25 @@ const canonical = `${SITE.baseUrl}/en/case-converter/`;
       <h2 class="font-heading-md text-ink mb-6">Frequently Asked Questions</h2>
       
       <div class="prose max-w-3xl space-y-6">
-        <div>
-          <h3>How do I change case in Microsoft Excel?</h3>
-          <p>
-            In Excel, use the following functions:
-          </p>
-          <ul>
-            <li><code>=UPPER(A1)</code> — Converts to uppercase</li>
-            <li><code>=LOWER(A1)</code> — Converts to lowercase</li>
-            <li><code>=PROPER(A1)</code> — Converts to capitalized</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>How do I change case in Microsoft Word?</h3>
-          <p>
-            In Word, select the text and press <code>Shift+F3</code> to toggle between uppercase, lowercase, and capitalized.
-            For more options, use <strong>Format &gt; Text &gt; Change Case</strong>.
-          </p>
-        </div>
-
-        <div>
-          <h3>How do I change case in Google Sheets?</h3>
-          <p>
-            In Google Sheets, use the same functions as Excel:
-          </p>
-          <ul>
-            <li><code>=UPPER(A1)</code></li>
-            <li><code>=LOWER(A1)</code></li>
-            <li><code>=PROPER(A1)</code></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>What is the difference between sentence case and title case?</h3>
-          <p>
-            <strong>Sentence case</strong> capitalizes only the first letter of each sentence. <strong>Title case</strong> capitalizes the first letter of each significant word, keeping articles and prepositions lowercase.
-          </p>
-        </div>
-
-        <div>
-          <h3>How do I fix accidental Caps Lock text?</h3>
-          <p>
-            Paste your ALL CAPS text into the converter, select "lowercase" mode, and the text will be converted to lowercase.
-            You can then use "Capitalized" or "Sentence" mode to fix the capitalization as needed.
-          </p>
-        </div>
-
-        <div>
-          <h3>Can I use ConverteCaixa for long texts?</h3>
-          <p>
-            Yes. ConverteCaixa is optimized for texts of any length, from a single word to entire documents.
-            All processing is done locally, with no server-imposed size limits.
-          </p>
-        </div>
+        {englishCaseConverterFaq.map((item) => (
+          <div>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+            {item.points && (
+              <ul>
+                {item.points.map((point) => {
+                  const { formula, detail } = faqPointParts(point);
+                  return (
+                    <li>
+                      <code>{formula}</code>
+                      {detail ? ` — ${detail}` : null}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </section>

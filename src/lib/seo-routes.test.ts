@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { englishCaseConverterFaq, portugueseCaseConverterFaq } from './case-converter-faq';
 import { FOOTER_LINKS, NAV_ITEMS, SITE } from './config';
+import { faqAnswerText, faqPageJsonLd, faqPointParts } from './faq-schema';
 import redirectsFile from '../../public/_redirects?raw';
 import sitemapFile from '../../public/sitemap.xml?raw';
 import {
@@ -13,6 +15,12 @@ import {
 } from './seo-routes';
 
 const pageSources = import.meta.glob<string>('../pages/**/*.astro', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+
+const layoutSources = import.meta.glob<string>('../layouts/BaseLayout.astro', {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -174,5 +182,74 @@ describe('indexable routes', () => {
     expect(pageSources['../pages/pt/index.astro']).toContain('id="faq"');
     expect(pageSources['../pages/en/contact.astro']).toContain('href="/en/#faq"');
     expect(pageSources['../pages/pt/contato.astro']).toContain('href="/pt/#faq"');
+  });
+});
+
+describe('FAQPage schema on the primary converter landings', () => {
+  const englishOnlyModePaths = [
+    '/en/uppercase-to-lowercase/',
+    '/en/sentence-case-converter/',
+    '/en/title-case-converter/',
+  ];
+
+  it('builds FAQPage JSON-LD from the visible converter questions', () => {
+    for (const items of [englishCaseConverterFaq, portugueseCaseConverterFaq]) {
+      const schema = faqPageJsonLd(items);
+      expect(schema['@context']).toBe('https://schema.org');
+      expect(schema['@type']).toBe('FAQPage');
+      expect(schema.mainEntity).toHaveLength(items.length);
+      expect(new Set(items.map((item) => item.question)).size).toBe(items.length);
+
+      schema.mainEntity.forEach((entity, index) => {
+        const item = items[index];
+        expect(entity['@type']).toBe('Question');
+        expect(entity.name).toBe(item.question);
+        expect(entity.name.trim().length).toBeGreaterThan(0);
+        expect(entity.acceptedAnswer).toEqual({
+          '@type': 'Answer',
+          text: faqAnswerText(item),
+        });
+        expect(entity.acceptedAnswer.text).toContain(item.answer);
+        for (const point of item.points ?? []) {
+          const { formula, detail } = faqPointParts(point);
+          expect(entity.acceptedAnswer.text).toContain(point);
+          expect(formula.length).toBeGreaterThan(0);
+          expect(detail ? `${formula} — ${detail}` : formula).toBe(point);
+        }
+      });
+    }
+  });
+
+  it('keeps the long-text answers on client-side conversion', () => {
+    const english = englishCaseConverterFaq.find((item) => item.question === 'Can I use ConverteCaixa for long texts?');
+    const portuguese = portugueseCaseConverterFaq.find(
+      (item) => item.question === 'Posso usar o ConverteCaixa para textos longos?',
+    );
+    expect(english?.answer).toContain('All processing is done locally');
+    expect(english?.answer).toContain('no server-imposed size limits');
+    expect(portuguese?.answer).toContain('Todo o processamento é feito localmente');
+    expect(portuguese?.answer).toContain('sem limites de tamanho impostos pelo servidor');
+  });
+
+  it('renders that FAQ on the flagship pages and emits it from the layout', () => {
+    const englishPage = pageSources['../pages/en/case-converter.astro'];
+    const portuguesePage = pageSources['../pages/pt/converter-maiusculas-minusculas.astro'];
+    const layout = layoutSources['../layouts/BaseLayout.astro'];
+
+    expect(englishPage).toContain('faqItems={englishCaseConverterFaq}');
+    expect(englishPage).toContain('englishCaseConverterFaq.map');
+    expect(portuguesePage).toContain('faqItems={portugueseCaseConverterFaq}');
+    expect(portuguesePage).toContain('portugueseCaseConverterFaq.map');
+    expect(layout).toContain('faqPageJsonLd(faqItems)');
+    expect(layout).toContain('application/ld+json');
+  });
+
+  it('does not add Portuguese twins for the English-only mode pages', () => {
+    for (const path of englishOnlyModePaths) {
+      expect(SEO_ROUTES.find((route) => route.path === path)?.alternate).toBeUndefined();
+    }
+    expect(pageSources['../pages/pt/uppercase-to-lowercase.astro']).toBeUndefined();
+    expect(pageSources['../pages/pt/sentence-case-converter.astro']).toBeUndefined();
+    expect(pageSources['../pages/pt/title-case-converter.astro']).toBeUndefined();
   });
 });
